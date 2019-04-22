@@ -2,16 +2,9 @@ import os
 import json
 import datetime
 from flask import Flask, request, jsonify
-from flask_sqlalchemy import SQLAlchemy
-from flask_cors import CORS
 from twilio.twiml.messaging_response import MessagingResponse
 
 app = Flask(__name__)
-CORS(app)
-
-app.config.from_object(os.environ['APP_SETTINGS'])
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
 
 from models import Usuarios
 

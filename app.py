@@ -23,7 +23,7 @@ def hello():
 def sms_reply():
     msg = request.form.get('Body')
     resp = MessagingResponse()
-    resp.message("HERE IS YOUR MESSAGE {}".form(msg))
+    resp.message("HERE IS YOUR MESSAGE: {}".format(msg))
     return str(resp)
 
 

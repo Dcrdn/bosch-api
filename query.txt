@@ -1,0 +1,8 @@
+http://127.0.0.1:5000/register?nombre=Diego&apellido=Cardenas&email=diego@diego.com&password=diegopassword&edad=18&ciudad=zapopan&genero=male&estado=esteesunestado&interes=females&fotoPerfil=www.fotodeperfil.com
+python manage.py runserver -h 0.0.0.0 -p 8080 -d
+
+
+env file:
+
+export APP_SETTINGS="config.DevelopmentConfig"
+export DATABASE_URL="postgresql://userOfDatabase:password@localhost/nameOfDb"

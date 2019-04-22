@@ -16,8 +16,7 @@ from models import Usuarios
 
 @app.route("/")
 def hello():
-    print "hello world"
-    return "Hello World!"
+    return "puto el que lo lea"
 
 
 if __name__ == '__main__':

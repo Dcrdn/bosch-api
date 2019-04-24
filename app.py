@@ -6,6 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from twilio.twiml.messaging_response import MessagingResponse
 from twilio.rest import Client
+from processMessage import getInfo
 import requests
 
 app = Flask(__name__)
@@ -35,6 +36,8 @@ def sms_reply():
     parametros={"mensaje":msg}
     r=requests.post("https://bosch-nlp.herokuapp.com/intent", json=parametros)
     toSend=r.json()["response"]["name"]
+    toSend=getInfo(toSend)
+
     resp.message("*HERE IS YOUR MESSAGE jeje*: {}".format(toSend))
     if fromMessage == 'whatsapp:+5213332005486':
         message = client2.messages.create(
@@ -59,7 +62,9 @@ def messenger_reply():
     parametros={"mensaje":msg}
     r=requests.post("https://bosch-nlp.herokuapp.com/intent", json=parametros)
     toSend=r.json()["response"]["name"]
-    resp.message("HERE IS YOUR MESSAGE jeje: {}".format(toSend))
+    res=getInfo(toSend)
+
+    resp.message("HERE IS YOUR MESSAGE jeje: {}".format(res))
     return str(resp)
 
 

@@ -2,7 +2,27 @@ http://127.0.0.1:5000/register?nombre=Diego&apellido=Cardenas&email=diego@diego.
 python manage.py runserver -h 0.0.0.0 -p 8080 -d
 
 
-env file:
+.env file:
 
+Local:
 export APP_SETTINGS="config.DevelopmentConfig"
 export DATABASE_URL="postgresql://userOfDatabase:password@localhost/nameOfDb"
+
+pushear a heroku:
+
+git remote add prod https://git.heroku.com/bosch-api.git
+
+mi archivo de  heroku se llama prod
+git push prod master
+
+
+pusheas a github:
+git remote add origin https://github.com/Dcrdn/bosch-api.git
+git push origin master
+
+//tengo que hacer lo de init?
+
+heroku run python manage.py db upgrade --app bosch-api
+
+
+https://bosch-api.herokuapp.com

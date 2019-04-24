@@ -48,6 +48,14 @@ def sms_reply():
     print(message.body)
     return str(resp)
 
+@app.route("/messenger", methods=['POST'])
+def messenger_reply():
+    msg = request.form.get('Body')
+    resp = MessagingResponse()
+    resp.message("HERE IS YOUR MESSAGE jeje: {}".format(msg))
+    return str(resp)
+
+
 
 
 # Your Account Sid and Auth Token from twilio.com/console

@@ -28,12 +28,7 @@ def sms_reply():
     msg = request.form.get('Body')
     resp = MessagingResponse()
     resp.message("*HERE IS YOUR MESSAGE*: {}".format(msg))
-    message = client.messages.create(
-                              from_='whatsapp:+14155238886',
-                              body='{}'.format(msg),
-                              to='whatsapp:+5213332005486'
-                          )
-    return str(message.id)
+    return str(resp)
 
 
 

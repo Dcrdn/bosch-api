@@ -66,15 +66,18 @@ def messenger_reply():
 
     r=requests.post("https://bosch-nlp.herokuapp.com/intent", json=parametros)
     toSend=r.json()["response"]["name"]
+    if(dicInfo[user]["next"]!=None):
+        toSend=dicInfo[user]["next"]
+
     if(str(toSend)=="saludos"):
         toSend="Hi, I can help you to buy automobile pars. Would you like to work with our providers or with our partner PartsTech?"
     elif(str(toSend)=="decision.pt"):
         toSend="Excelent. I'm going to ask you some questions about what you are looking for."
-        dicInfo[user]={"prove":False}
+        dicInfo[user]={"prove":False, "next":"marca"}
         resp.message("{}".format(toSend))
         toSend="What is the branch of the car?"
     elif(str(toSend)=="decision.prove"):
-        dicInfo[user]={"prove":True}
+        dicInfo[user]={"prove":True, "next":"marca"}
 
         toSend="Excelent. I'm going to ask you some questions about what you are looking for."
         resp.message("{}".format(toSend))
@@ -84,6 +87,7 @@ def messenger_reply():
         info=dicInfo[user]
         info["marca"]=res[0]
         info["marcaId"]=res[1]
+        info["next"]="year"
         dicInfo[user]=info
         toSend="Great. What is the year of the car? marca: "+ res[0] +", id: "+ str(res[1])
     elif(str(toSend)=="year"):
@@ -91,15 +95,17 @@ def messenger_reply():
         year=year[-1]
         res=dicInfo[user]
         res["year"]=year
+        res["next"]="modelo"
         dicInfo[user]=res
         toSend="Okay. What is the model of the car? year: "+ year
     elif(str(toSend)=="modelo"):
         info=existeModelo(msg.lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"]) #elantra
         res=dicInfo[user]
-        res["modelo"]=modelo
+        res["modelo"]=info[0]
         res["modeloId"]=info[1]
+        res["next"]="modelo.sub"
         dicInfo[user]=res
-        toSend="Cool. What is the submodel of the car? modelo: "+ modelo + " id: " + str(info[1])
+        toSend="Cool. What is the submodel of the car? modelo: "+ info[0] + " id: " + str(info[1])
     elif(str(toSend)=="modelo.sub"):
         submodelo=msg.split()
         submodelo=submodelo[-1]
@@ -107,6 +113,7 @@ def messenger_reply():
         res=dicInfo[user]
         res["submodelo"]=submodelo
         res["submodeloId"]=info[1]
+        res["next"]="motor"
         dicInfo[user]=res
         toSend="Almost done. What is the name of the engine? sub: "+ submodelo + " id: "+ str(info[1])
     elif(str(toSend)=="motor"):
@@ -118,8 +125,10 @@ def messenger_reply():
         res["engineName"]=engine
         res["engineId"]=info[1]
         res["engine"]=info[2]
+        res["next"]="part"
         dicInfo[user]=res
     elif(str(toSend)=="part"): #the part i want is the -..-.-.
+        #arreglar este para que sirva con cualquiera
         oracion=msg.split()
         index=oracion.index("is")
         message=oracion[index+2:]

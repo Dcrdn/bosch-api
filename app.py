@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import os
 import json
 import datetime
@@ -8,6 +7,9 @@ from flask_cors import CORS
 from twilio.twiml.messaging_response import MessagingResponse
 from twilio.rest import Client
 import requests
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 app = Flask(__name__)
 CORS(app)

@@ -25,7 +25,7 @@ def hello():
 
 @app.route("/sms", methods=['POST'])
 def sms_reply():
-    print(rquest.form)
+    print(request.form)
     msg = request.form.get('Body')
     resp = MessagingResponse()
     resp.message("*HERE IS YOUR MESSAGE*: {}".format(msg))

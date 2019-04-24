@@ -6,7 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from twilio.twiml.messaging_response import MessagingResponse
 from twilio.rest import Client
-from information import existeMarca, existeModelo, existeSubmodelo
+from information import existeMarca, existeModelo, existeSubmodelo, js_read, js_save
 import requests
 import sys
 reload(sys)
@@ -25,8 +25,6 @@ auth_token2 = '5be98f5de25583f76a5e1354f6bd442d'
 client = Client(account_sid, auth_token)
 client2 = Client(account_sid2, auth_token2)
 #from models import Usuarios
-
-dicInfo={}
 
 @app.route("/")
 def hello():
@@ -64,7 +62,7 @@ def messenger_reply():
     parametros={"mensaje":msg}
     user=request.form.get('From')
     user=str(user)
-    global dicInfo
+    dicInfo=js_read()
 
     r=requests.post("https://bosch-nlp.herokuapp.com/intent", json=parametros)
     toSend=r.json()["response"]["name"]
@@ -160,6 +158,7 @@ def messenger_reply():
         toSend="I'll be here if you need something else."
     else:
         print("no se pudo")
+    js_save(dicInfo)
     resp.message("{}".format(toSend))
     return str(resp)
 

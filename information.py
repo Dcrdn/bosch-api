@@ -127,6 +127,14 @@ def getPrice(yearId, makeId, modelId, subModelId, engineId, engineParams, keywor
     print(precio)
     return [idPart, brand, url, precio] #devuelve una lista de los modelos de la linea de carros
 
+def js_read():
+   with open('temp.json') as f_in:
+       return(json.load(f_in))
+
+def js_save(dictionary):
+    with open('temp.json', 'w') as fp:
+        json.dump(dictionary, fp)
+
 #sonata
 data=existeMarca("Hyundai".lower())
 data2=existeModelo("Elantra".lower(), 2016, data[1])

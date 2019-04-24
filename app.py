@@ -33,7 +33,7 @@ def sms_reply():
                               from_='whatsapp:+14155238886',
                               to='whatsapp:+5213332005486'
                           )
-    print(message.sid)
+    print(message.body)
     return str(resp)
 
 

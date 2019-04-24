@@ -107,9 +107,23 @@ def messenger_reply():
         engine=msg.split()
         engine=subenginemodelo[-1]
         res=dicInfo[user]
+        toSend="Great! Now tell me the auto part you want to buy"
         res["engine"]=engine
         dicInfo[user]=engine
         print(dicInfo)
+    elif(str(toSend)=="part"):
+        toSend="The part you want to buy costs: X"
+        resp.message("{}".format(toSend))
+        toSend="Do you want to add it to your cart?"
+    elif(str(toSend)=="cart"):
+        #aqui la agrego al carrito
+        toSend="Do you want to buy something else or you want to do the checkout?"
+    elif(str(toSend)=="buyelse"):
+        toSend="Is it for the same car?"
+    elif(str(toSend)=="samecar"):
+        toSend="Great! Now tell me the auto part you want to buy"
+    elif(str(toSend)=="checkout"):
+        toSend="your total would be Y ammount"
     elif(str(toSend)=="despedidas"):
         dicInfo={}
         toSend="I'll be here if you need something else."

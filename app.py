@@ -124,10 +124,19 @@ def messenger_reply():
         toSend="Great! Now tell me the auto part you want to buy"
     elif(str(toSend)=="checkout"):
         toSend="your total would be Y ammount"
+        resp.message("{}".format(toSend))
+        toSend="Do you want to pay with whatsapp payments or via bank deposit?"
+    elif(str(toSend)=="bankdeposit"):
+        toSend="Great. Here you have the bank details"
+        resp.message("{}".format(toSend))
+        toSend="Please provide us an address to send the product when your payment is accepted"
+    elif(str(toSend)=="address"):
+        toSend="Perfect. We will let you know when your package it's on it's way"
     elif(str(toSend)=="despedidas"):
         dicInfo={}
         toSend="I'll be here if you need something else."
     else:
+        print("to send: + " toSend)
         print("no se pudo")
     resp.message("{}".format(toSend))
     return str(resp)

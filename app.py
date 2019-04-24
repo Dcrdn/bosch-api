@@ -29,16 +29,17 @@ def sms_reply():
     msg = request.form.get('Body')
     resp = MessagingResponse()
     resp.message("*HERE IS YOUR MESSAGE*: {}".format(msg))
-    message = client.messages.create(
-                              body='{}'.format(msg),
-                              from_='whatsapp:+14155238886',
-                              to='whatsapp:+5213332005486'
-                          )
     if fromMessage == 'whatsapp:+14155238886':
         message = client.messages.create(
                               body='{}'.format(msg),
                               from_='whatsapp:+14155238886',
                               to='whatsapp:+5213314585897'
+                          )
+    else: 
+        message = client.messages.create(
+                              body='{}'.format(msg),
+                              from_='whatsapp:+14155238886',
+                              to='whatsapp:+5213332005486'
                           )
     print(message.body)
     return str(resp)

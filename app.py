@@ -25,7 +25,7 @@ def hello():
 
 @app.route("/sms", methods=['POST'])
 def sms_reply():
-    print(request.form)
+    fromMessage = request.form.get('From')
     msg = request.form.get('Body')
     resp = MessagingResponse()
     resp.message("*HERE IS YOUR MESSAGE*: {}".format(msg))
@@ -33,6 +33,12 @@ def sms_reply():
                               body='{}'.format(msg),
                               from_='whatsapp:+14155238886',
                               to='whatsapp:+5213332005486'
+                          )
+    if fromMessage == 'whatsapp:+14155238886':
+        message = client.messages.create(
+                              body='{}'.format(msg),
+                              from_='whatsapp:+14155238886',
+                              to='whatsapp:+5213314585897'
                           )
     print(message.body)
     return str(resp)

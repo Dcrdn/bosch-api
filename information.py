@@ -116,6 +116,8 @@ def getPrice(yearId, makeId, modelId, subModelId, engineId, engineParams, keywor
     parametros={"searchParams":parametros}
     print(parametros)
     r=requests.post(urlGetPrice, headers=auth, json=parametros)
+    print("---------------")
+    print(r.json())
     idPart=r.json()["parts"][0]["partId"]
     brand=r.json()["parts"][0]["brand"]["brandID"]
     url=r.json()["parts"][0]["images"][0]["preview"]

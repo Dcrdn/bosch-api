@@ -59,6 +59,8 @@ def messenger_reply():
     msg = request.form.get('Body')
     resp = MessagingResponse()
     parametros={"mensaje":msg}
+    print("-----------")
+    print(request.form)
     r=requests.post("https://bosch-nlp.herokuapp.com/intent", json=parametros)
     toSend=r.json()["response"]["name"]
     if(str(toSend)=="saludos"):

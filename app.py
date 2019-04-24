@@ -6,7 +6,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from twilio.twiml.messaging_response import MessagingResponse
 from twilio.rest import Client
-from processMessage import perro
 import requests
 
 app = Flask(__name__)
@@ -21,8 +20,16 @@ account_sid2 = 'AC01310a6100555a897c5e4cf36f4bc601'
 auth_token2 = '5be98f5de25583f76a5e1354f6bd442d'
 client = Client(account_sid, auth_token)
 client2 = Client(account_sid2, auth_token2)
-
 from models import Usuarios
+
+
+def getInfo(intentName):
+    if(intentName=="saludos"):
+        mensaje="Hola! Te puedo ayudar a comprar/cotizar autopartes con proveedores externos o con nuestro aliado PartsTech. ¿Con quien te gustaria?"
+        return mensaje
+    return "no llego a nada"
+
+
 
 @app.route("/")
 def hello():
@@ -36,8 +43,7 @@ def sms_reply():
     parametros={"mensaje":msg}
     r=requests.post("https://bosch-nlp.herokuapp.com/intent", json=parametros)
     toSend=r.json()["response"]["name"]
-   # toSend=getInfo(toSend)
-    cosa=perro()
+    toSend=getInfo(toSend)
     resp.message("*HERE IS YOUR MESSAGE jeje*: {}".format(toSend))
     if fromMessage == 'whatsapp:+5213332005486':
         message = client2.messages.create(
@@ -62,8 +68,7 @@ def messenger_reply():
     parametros={"mensaje":msg}
     r=requests.post("https://bosch-nlp.herokuapp.com/intent", json=parametros)
     toSend=r.json()["response"]["name"]
-   # res=getInfo(toSend)
-
+    toSend=getInfo(toSend)
     resp.message("HERE IS YOUR MESSAGE jeje: {}".format(toSend))
     return str(resp)
 

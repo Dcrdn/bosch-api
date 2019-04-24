@@ -6,7 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from twilio.twiml.messaging_response import MessagingResponse
 from twilio.rest import Client
-from information import existeMarca, existeModelo, existeSubmodelo, js_read, js_save
+from information import existeMarca, existeModelo, existeSubmodelo, existeMotor, js_read, js_save
 import requests
 import sys
 reload(sys)

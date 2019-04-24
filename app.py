@@ -63,10 +63,7 @@ def messenger_reply():
     resp = MessagingResponse()
     parametros={"mensaje":msg}
     user=request.form.get('From')
-    user=json.loads(user)
-    print(user)
-    print(type(user))
-    print(user["messenger"])
+    user=str(user)
     global dicInfo
 
     r=requests.post("https://bosch-nlp.herokuapp.com/intent", json=parametros)

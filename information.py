@@ -111,7 +111,7 @@ def existeMotor(motorName, year, marcaId, modelId, submodelId):
 #yearId, makeId, modelId, subModelId, engineId, engineParams: engineVinId,
 
 def getPrice(yearId, makeId, modelId, subModelId, engineId, engineParams, keyword):
-    vehicle={"yearId":yearId, "makeId":makeId, "modelId":modelId, "subModelId":subModelId, "engineId":engineId, "engineParams":engineParams}
+    vehicle={"yearId":int(yearId), "makeId":makeId, "modelId":modelId, "subModelId":subModelId, "engineId":engineId, "engineParams":engineParams}
     parametros={"vehicleParams":vehicle,"keyword":keyword}
     parametros={"searchParams":parametros}
     print(parametros)

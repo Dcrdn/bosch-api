@@ -85,6 +85,8 @@ def messenger_reply():
     elif(str(toSend)=="year"):
         year=msg.split()
         year=year[-1]
+        print("--dic")
+        print(dicInfo)
         res=dicInfo[user]
         res["year"]=year
         dicInfo[user]=res

@@ -77,7 +77,7 @@ def messenger_reply():
     elif(str(toSend)=="marca"):
         marca=msg.split()
         marca=marca[-1]
-        res=existeMarca("Hyundai".lower())
+        res=existeMarca(marca.lower())
         dicInfo[user]={"marca":marca, "marcaId":res[1]}
         toSend="Great. What is the year of the car? marca: "+ marca +", id: "+ res[1]
         print(dicInfo)

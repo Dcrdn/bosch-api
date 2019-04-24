@@ -136,7 +136,6 @@ def messenger_reply():
         dicInfo={}
         toSend="I'll be here if you need something else."
     else:
-        print("to send: + " toSend)
         print("no se pudo")
     resp.message("{}".format(toSend))
     return str(resp)

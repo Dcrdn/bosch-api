@@ -1,6 +1,8 @@
+"""
+import rasa_nlu
+
 from rasa_nlu.model import Interpreter
 import json
-
 interpreter = Interpreter.load("./models/current/nlu")
 
 def getIntent(message):
@@ -10,3 +12,4 @@ def getIntent(message):
 
 
 getIntent("quiero saber de PartsTech")
+"""

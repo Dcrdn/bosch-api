@@ -30,17 +30,15 @@ def hello():
 @app.route("/sms", methods=['POST'])
 def sms_reply():
     fromMessage = request.form.get('From')
-    print(fromMessage)
     msg = request.form.get('Body')
     resp = MessagingResponse()
     parametros={"mensaje":msg}
     r=requests.post("https://bosch-nlp.herokuapp.com/intent", json=parametros)
-    response=r.json()
-    msg=response
-    resp.message("*HERE IS YOUR MESSAGE jeje*: {}".format(msg))
+    toSend=r.json()["response"]["name"]
+    resp.message("*HERE IS YOUR MESSAGE jeje*: {}".format(toSend))
     if fromMessage == 'whatsapp:+5213332005486':
         message = client2.messages.create(
-                              body='{}'.format(msg),
+                              body='{}'.format(toSend),
                               from_='whatsapp:+14155238886',
                               to='whatsapp:+5213314585897'
                           )

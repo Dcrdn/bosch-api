@@ -64,6 +64,10 @@ def messenger_reply():
     if(str(toSend)=="saludos"):
         toSend="Hi, I can help you to buy automobile pars. Would you like to work with our providers or with our partner PartsTech?"
         print("-----------------hey")
+    elif(str(toSend)=="decision.pt"):
+        toSend="Excelent. I'm going to ask you some questions about what you are looking for."
+        resp.message("HERE IS YOUR MESSAGE jeje: {}".format(toSend))
+        toSend="What is the branch of the car?"
     else:
         print("no se pudo")
     resp.message("HERE IS YOUR MESSAGE jeje: {}".format(toSend))

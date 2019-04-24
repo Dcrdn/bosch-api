@@ -6,7 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from twilio.twiml.messaging_response import MessagingResponse
 from twilio.rest import Client
-from information import existeMarca, existeModelo, existeSubmodelo, existeMotor, js_read, js_save
+from information import existeMarca, existeModelo, existeSubmodelo, existeMotor, getPrice, js_read, js_save
 import requests
 import sys
 reload(sys)
@@ -132,8 +132,8 @@ def messenger_reply():
         index=oracion.index("is")
         message=oracion[index+2:]
         part=' '.join(message)
-
-        toSend="The part you want to buy costs: X. part is: "+ part
+        price= getPrice(dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"], dicInfo[user]["submodeloId"], dicInfo[user]["engineId"], dicInfo[user]["engine"], part)
+        toSend="The part you want to buy costs: X. part is: "+ part+ " with price: "+ str(price)
         resp.message("{}".format(toSend))
         toSend="Do you want to add it to your cart?"
     elif(str(toSend)=="cart"):

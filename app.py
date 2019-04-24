@@ -37,7 +37,7 @@ def sms_reply():
     r=requests.post("https://bosch-nlp.herokuapp.com/intent", json=parametros)
     toSend=r.json()["response"]["name"]
    # toSend=getInfo(toSend)
-
+    cosa=perro()
     resp.message("*HERE IS YOUR MESSAGE jeje*: {}".format(toSend))
     if fromMessage == 'whatsapp:+5213332005486':
         message = client2.messages.create(

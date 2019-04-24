@@ -94,7 +94,7 @@ def messenger_reply():
         modelo=modelo[-1]
         print("---------------")
         print(dicInfo)
-        info=existeModelo(modelo.lower(), dicInfo["year"], dicInfo["marcaId"]) #elantra
+        info=existeModelo(modelo.lower(), dicInfo["user"]["year"], dicInfo["user"]["marcaId"]) #elantra
 
         res=dicInfo[user]
         res["modelo"]=modelo
@@ -106,7 +106,7 @@ def messenger_reply():
     elif(str(toSend)=="modelo.sub"):
         submodelo=msg.split()
         submodelo=submodelo[-1]
-        info=existeSubmodelo(submodelo.lower(), dicInfo["year"], dicInfo["marcaId"], dicInfo["modeloId"])
+        info=existeSubmodelo(submodelo.lower(), dicInfo["user"]["year"], dicInfo["user"]["marcaId"], dicInfo["user"]["modeloId"])
         res=dicInfo[user]
         res["submodelo"]=submodelo
         res["submodeloId"]=info[1]
@@ -117,14 +117,14 @@ def messenger_reply():
     elif(str(toSend)=="motor"):
         engine=msg.split()
         engine=subenginemodelo[-1]
-        info=existeMotor("1.8L L4 vin E DOHC  ULEV".lower(), dicInfo["year"], dicInfo["marcaId"], dicInfo["modeloId"], dicInfo["submodeloId"])
+        info=existeMotor("1.8L L4 vin E DOHC  ULEV".lower(), dicInfo["user"]["year"], dicInfo["user"]["marcaId"], dicInfo["user"]["modeloId"], dicInfo["user"]["submodeloId"])
 
         res=dicInfo[user]
         toSend="Great! Now tell me the auto part you want to buy"
         res["engineName"]=engine
         res["engineId"]=info[1]
         res["engine"]=info[2]
-        dicInfo[user]=engine
+        dicInfo[user]=res
         print(dicInfo)
     elif(str(toSend)=="part"): #the part i want is the -..-.-.
         oracion=msg.split()

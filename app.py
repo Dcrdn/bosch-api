@@ -68,6 +68,14 @@ def messenger_reply():
         toSend="Excelent. I'm going to ask you some questions about what you are looking for."
         resp.message("HERE IS YOUR MESSAGE jeje: {}".format(toSend))
         toSend="What is the branch of the car?"
+    elif(str(toSend)=="marca"):
+        toSend="Great. What is the year of the car?"
+    elif(str(toSend)=="year"):
+        toSend="Okay. What is the model of the car?"
+    elif(str(toSend)=="modelo"):
+        toSend="Yikes. What is the submodel of the car?"
+    elif(str(toSend)=="modelo.sub"):
+        toSend="Almost done. What is the name of the engine?"
     else:
         print("no se pudo")
     resp.message("HERE IS YOUR MESSAGE jeje: {}".format(toSend))

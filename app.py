@@ -6,7 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from twilio.twiml.messaging_response import MessagingResponse
 from twilio.rest import Client
-from information import existeMarca
+from information import existeMarca, existeModelo, existeSubmodelo
 import requests
 import sys
 reload(sys)
@@ -92,25 +92,36 @@ def messenger_reply():
     elif(str(toSend)=="modelo"):
         modelo=msg.split()
         modelo=modelo[-1]
+        info=existeModelo(modelo.lower(), dicInfo["year"], dicInfo["marcaId"]) #elantra
+
         res=dicInfo[user]
         res["modelo"]=modelo
+        res["modeloId"]=info[1]
+
         dicInfo[user]=res
-        toSend="Yikes. What is the submodel of the car? modelo: "+ modelo
+        toSend="Yikes. What is the submodel of the car? modelo: "+ modelo + " id: " + str(info[1])
         print(dicInfo)
     elif(str(toSend)=="modelo.sub"):
         submodelo=msg.split()
         submodelo=submodelo[-1]
+        info=existeSubmodelo(submodelo.lower(), dicInfo["year"], dicInfo["marcaId"], dicInfo["modeloId"])
         res=dicInfo[user]
         res["submodelo"]=submodelo
+        res["submodeloId"]=info[1]
         dicInfo[user]=res
-        toSend="Almost done. What is the name of the engine? sub: "+ submodelo
+
+        toSend="Almost done. What is the name of the engine? sub: "+ submodelo + " id: "+ str(info[1])
         print(dicInfo)
     elif(str(toSend)=="motor"):
         engine=msg.split()
         engine=subenginemodelo[-1]
+        info=existeMotor("1.8L L4 vin E DOHC  ULEV".lower(), dicInfo["year"], dicInfo["marcaId"], dicInfo["modeloId"], dicInfo["submodeloId"])
+
         res=dicInfo[user]
         toSend="Great! Now tell me the auto part you want to buy"
-        res["engine"]=engine
+        res["engineName"]=engine
+        res["engineId"]=info[1]
+        res["engine"]=info[2]
         dicInfo[user]=engine
         print(dicInfo)
     elif(str(toSend)=="part"): #the part i want is the -..-.-.

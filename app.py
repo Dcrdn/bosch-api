@@ -15,7 +15,10 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 account_sid = 'ACa9513b791536c7a97c306e8f9b6c9a79'
 auth_token = '07c24096e11336cd33017101119f72e0'
+account_sid2 = 'AC01310a6100555a897c5e4cf36f4bc601'
+auth_token2 = '5be98f5de25583f76a5e1354f6bd442d'
 client = Client(account_sid, auth_token)
+client2 = Client(account_sid2, auth_token2)
 
 from models import Usuarios
 
@@ -30,7 +33,7 @@ def sms_reply():
     resp = MessagingResponse()
     resp.message("*HERE IS YOUR MESSAGE*: {}".format(msg))
     if fromMessage == 'whatsapp:+14155238886':
-        message = client.messages.create(
+        message = client2.messages.create(
                               body='{}'.format(msg),
                               from_='whatsapp:+14155238886',
                               to='whatsapp:+5213314585897'

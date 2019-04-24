@@ -25,7 +25,6 @@ client = Client(account_sid, auth_token)
 client2 = Client(account_sid2, auth_token2)
 #from models import Usuarios
 
-global dicInfo
 dicInfo={}
 
 @app.route("/")
@@ -38,6 +37,7 @@ def sms_reply():
     msg = request.form.get('Body')
     resp = MessagingResponse()
     parametros={"mensaje":msg}
+    global dicInfo
     r=requests.post("https://bosch-nlp.herokuapp.com/intent", json=parametros)
     toSend=r.json()["response"]["name"]
     resp.message("*HERE IS YOUR MESSAGE jeje*: {}".format(toSend))

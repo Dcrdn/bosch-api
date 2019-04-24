@@ -43,7 +43,8 @@ def sms_reply():
         message = client.messages.create(
                               body='{}'.format(msg),
                               from_='whatsapp:+14155238886',
-                              to='whatsapp:+5213332005486'
+                              to='whatsapp:+5213332005486',
+                              MediaUrl='https://frasesparami.com/wp-content/uploads/2017/06/IMAGENES-DE-RISA-CON-FRASES.jpg'
                           )
     print(message.body)
     return str(resp)

@@ -71,13 +71,23 @@ def messenger_reply():
         print("-----------------hey")
     elif(str(toSend)=="decision.pt"):
         toSend="Excelent. I'm going to ask you some questions about what you are looking for."
+        dicInfo[user]={"prove":False}
+        resp.message("{}".format(toSend))
+        toSend="What is the branch of the car?"
+    elif(str(toSend)=="decision.prove"):
+        dicInfo[user]={"prove":True}
+
+        toSend="Excelent. I'm going to ask you some questions about what you are looking for."
         resp.message("{}".format(toSend))
         toSend="What is the branch of the car?"
     elif(str(toSend)=="marca"):
         marca=msg.split()
         marca=marca[-1]
         res=existeMarca(marca.lower())
-        dicInfo[user]={"marca":marca, "marcaId":res[1]}
+        info=dicInfo[user]
+        info["marca"]=marca
+        info["marcaId"]=res[1]
+        dicInfo[user]=info
         toSend="Great. What is the year of the car? marca: "+ marca +", id: "+ str(res[1])
         print(dicInfo)
     elif(str(toSend)=="year"):
@@ -142,9 +152,23 @@ def messenger_reply():
         res["partName"]=part
 
         dicInfo[user]=res
-        toSend="The part you want to buy costs: X. part is: "+ part+ " with id: "+ str(idPart) +" with price"+ str(price)
-        resp.message("{}".format(toSend))
-        toSend="Do you want to add it to your cart?"
+        prove=dicInfo[user]["prove"]
+        if(prove):
+            toSend="Tell me how many pieces do you want"
+        else:    
+            toSend="The part you want to buy costs: X. part is: "+ part+ " with id: "+ str(idPart) +" with price"+ str(price)
+            resp.message("{}".format(toSend))
+            toSend="Do you want to add it to your cart?"
+    elif(str(toSend)=="pieces"): #diego --> pieces
+        piezas=msg.split()
+        piezas=oracion[-2]
+        res=dicInfo[user]
+        res["totalPieces"]=piezas
+        dicInfo[user]=res
+        toSend="Do you want to buy something else or do you want send the request to our providers?"
+    elif(str(toSend)=="providers"): #diego --> pieces
+        #envio a provedores, hacer algo aqui en whats
+        toSend="aqui se hace algo pero pa wats juejue"
     elif(str(toSend)=="cart"):
         #aqui la agrego al carrito
         info=dicInfo[user]
@@ -155,18 +179,12 @@ def messenger_reply():
         else:
             info["cart"]=[[dicInfo[user]["partId"],dicInfo[user]["partName"], dicInfo[user]["partPrice"]]]
         dicInfo[user]=info
-        print("////////")
-        print(dicInfo)
         toSend="Do you want to buy something else or you want to do the checkout?"
     elif(str(toSend)=="buyelse"):
         toSend="Is it for the same car?"
     elif(str(toSend)=="samecar"):
         toSend="Great! Now tell me the auto part you want to buy"
     elif(str(toSend)=="checkout"):
-        print("////////")
-        print("////////")
-        print("////////")
-        print(dicInfo[user])
         comprar=dicInfo[user]["cart"]
         total=0
         for element in comprar:

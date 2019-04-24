@@ -22,15 +22,6 @@ client = Client(account_sid, auth_token)
 client2 = Client(account_sid2, auth_token2)
 from models import Usuarios
 
-
-def getInfo(intentName):
-    if(intentName=="saludos"):
-        mensaje="Hola! Te puedo ayudar a comprar/cotizar autopartes con proveedores externos o con nuestro aliado PartsTech. ¿Con quien te gustaria?"
-        return mensaje
-    return "no llego a nada"
-
-
-
 @app.route("/")
 def hello():
     return "puto el que lo lea exepto Dafne, hi"
@@ -43,7 +34,11 @@ def sms_reply():
     parametros={"mensaje":msg}
     r=requests.post("https://bosch-nlp.herokuapp.com/intent", json=parametros)
     toSend=r.json()["response"]["name"]
-    toSend=getInfo(toSend)
+    if(toSend=="saludos"):
+        mensaje="Hola! Te puedo ayudar a comprar/cotizar autopartes con proveedores externos o con nuestro aliado PartsTech. ¿Con quien te gustaria?"
+    else:
+        mensaje="no jala"
+    toSend=mensaje
     resp.message("*HERE IS YOUR MESSAGE jeje*: {}".format(toSend))
     if fromMessage == 'whatsapp:+5213332005486':
         message = client2.messages.create(

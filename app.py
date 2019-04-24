@@ -117,7 +117,7 @@ def messenger_reply():
         print(dicInfo)
     elif(str(toSend)=="motor"):
         engine=msg.split()
-        engine=subenginemodelo[-1]
+        engine=engine[-1]
         info=existeMotor("1.8L L4 vin E DOHC  ULEV".lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"], dicInfo[user]["submodeloId"])
 
         res=dicInfo[user]

@@ -33,7 +33,7 @@ def sms_reply():
     msg = request.form.get('Body')
     resp = MessagingResponse()
     resp.message("*HERE IS YOUR MESSAGE*: {}".format(msg))
-    if fromMessage == 'whatsapp:+14155238886':
+    if fromMessage == 'whatsapp:+5213332005486':
         message = client2.messages.create(
                               body='{}'.format(msg),
                               from_='whatsapp:+14155238886',

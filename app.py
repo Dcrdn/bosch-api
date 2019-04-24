@@ -155,12 +155,16 @@ def messenger_reply():
         else:
             info["cart"]=[[dicInfo[user]["partId"],dicInfo[user]["partName"], dicInfo[user]["partPrice"]]]
         dicInfo=info
+        print("////////")
+        print(dicInfo)
         toSend="Do you want to buy something else or you want to do the checkout?"
     elif(str(toSend)=="buyelse"):
         toSend="Is it for the same car?"
     elif(str(toSend)=="samecar"):
         toSend="Great! Now tell me the auto part you want to buy"
     elif(str(toSend)=="checkout"):
+        print("////////")
+        print(dicInfo)
         comprar=dicInfo[user]["cart"]
         total=0
         for element in comprar:

@@ -46,7 +46,7 @@ def sms_reply():
                               to='whatsapp:+5213332005486',
                               media_url='https://frasesparami.com/wp-content/uploads/2017/06/IMAGENES-DE-RISA-CON-FRASES.jpg'
                           )
-    print(message.body)
+    print(message)
     return str(resp)
 
 @app.route("/messenger", methods=['POST'])

@@ -132,7 +132,7 @@ def messenger_reply():
         index=oracion.index("is")
         message=oracion[index+2:]
         part=' '.join(message)
-        price= getPrice(dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"], dicInfo[user]["submodeloId"], dicInfo[user]["engineId"], dicInfo[user]["engine"], part)
+        price= getPrice(dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"], dicInfo[user]["submodeloId"], dicInfo[user]["engineId"], dicInfo[user]["engine"]["engineParams"], part)
         toSend="The part you want to buy costs: X. part is: "+ part+ " with price: "+ str(price)
         resp.message("{}".format(toSend))
         toSend="Do you want to add it to your cart?"

@@ -66,8 +66,9 @@ def messenger_reply():
 
     r=requests.post("https://bosch-nlp.herokuapp.com/intent", json=parametros)
     toSend=r.json()["response"]["name"]
-    if(dicInfo[user]["next"]!=None):
-        toSend=dicInfo[user]["next"]
+    if(user in dicInfo):
+        if(dicInfo[user]["next"]!=None):
+            toSend=dicInfo[user]["next"]
 
     if(str(toSend)=="saludos"):
         toSend="Hi, I can help you to buy automobile pars. Would you like to work with our providers or with our partner PartsTech?"

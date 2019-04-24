@@ -1,0 +1,849 @@
+{
+  "rasa_nlu_data": {
+    "common_examples": [
+      {
+        "intent": "saludos",
+        "text": "hey"
+      },
+      {
+        "intent": "saludos",
+        "text": "Hello"
+      },
+      {
+        "intent": "saludos",
+        "text": "Good morning"
+      },
+      {
+        "intent": "saludos",
+        "text": "Good afternoon"
+      },
+      {
+        "intent": "saludos",
+        "text": "Good evening"
+      },
+      {
+        "intent": "saludos",
+        "text": "hi"
+      },
+      {
+        "intent": "saludos",
+        "text": "what’s up"
+      },
+      {
+        "intent": "saludos",
+        "text": "hey"
+      },
+      {
+        "intent": "saludos",
+        "text": "yo"
+      },
+      {
+        "intent": "saludos",
+        "text": "helo"
+      },
+      {
+        "intent": "saludos",
+        "text": "hii"
+      },
+      {
+        "intent": "saludos",
+        "text": "hey how are you"
+      },
+      {
+        "intent": "saludos",
+        "text": "hi it is"
+      },
+      {
+        "intent": "saludos",
+        "text": "It’s nice to meet you"
+      },
+      {
+        "intent": "saludos",
+        "text": "It’s a pleasure to meet you"
+      },
+      {
+        "intent": "saludos",
+        "text": "Morning!"
+      },
+      {
+        "intent": "saludos",
+        "text": "G’day"
+      },
+      {
+        "intent": "saludos",
+        "text": "Grettings!"
+      },
+      {
+        "intent": "saludos",
+        "text": "Howdy"
+      },
+      {
+        "intent": "saludos",
+        "text": "What’s new"
+      },
+      {
+        "intent": "saludos",
+        "text": "Hola"
+      },
+      {
+        "intent": "saludos",
+        "text": "Holaa"
+      },
+      {
+        "intent": "saludos",
+        "text": "hola como estas"
+      },
+      {
+        "intent": "saludos",
+        "text": "buenos dias"
+      },
+      {
+        "intent": "saludos",
+        "text": "que onda"
+      },
+      {
+        "intent": "saludos",
+        "text": "Buenas tardes"
+      },
+      {
+        "intent": "saludos",
+        "text": "Mucho gusto"
+      },
+      {
+        "intent": "saludos",
+        "text": "Ey!"
+      },
+      {
+        "intent": "saludos",
+        "text": "Hola como estas"
+      },
+      {
+        "intent": "saludos",
+        "text": "ola como esta"
+      },
+      {
+        "intent": "saludos",
+        "text": "Que hay!"
+      },
+      {
+        "intent": "saludos",
+        "text": "Buenos Dias"
+      },
+      {
+        "intent": "saludos",
+        "text": "Buenas"
+      },
+      {
+        "intent": "despedidas",
+        "text": "thanks bye"
+      },
+      {
+        "intent": "despedidas",
+        "text": "bye"
+      },
+      {
+        "intent": "despedidas",
+        "text": "au revoir"
+      },
+      {
+        "intent": "despedidas",
+        "text": "goodbye"
+      },
+      {
+        "intent": "despedidas",
+        "text": "farewall"
+      },
+      {
+        "intent": "despedidas",
+        "text": "have a good day"
+      },
+      {
+        "intent": "despedidas",
+        "text": "have a nice day"
+      },
+      {
+        "intent": "despedidas",
+        "text": "take care"
+      },
+      {
+        "intent": "despedidas",
+        "text": "Bye!"
+      },
+      {
+        "intent": "despedidas",
+        "text": "Bye bye!"
+      },
+      {
+        "intent": "despedidas",
+        "text": "Later!"
+      },
+      {
+        "intent": "despedidas",
+        "text": "see you later"
+      },
+      {
+        "intent": "despedidas",
+        "text": "have a good one"
+      },
+      {
+        "intent": "despedidas",
+        "text": "so long"
+      },
+      {
+        "intent": "despedidas",
+        "text": "all right then"
+      },
+      {
+        "intent": "despedidas",
+        "text": "peace!"
+      },
+      {
+        "intent": "despedidas",
+        "text": "peace"
+      },
+      {
+        "intent": "despedidas",
+        "text": "i’m out"
+      },
+      {
+        "intent": "despedidas",
+        "text": "smell you later"
+      },
+      {
+        "intent": "despedidas",
+        "text": "Adios"
+      },
+      {
+        "intent": "despedidas",
+        "text": "Ciao"
+      },
+      {
+        "intent": "despedidas",
+        "text": "Arigato"
+      },
+      {
+        "intent": "despedidas",
+        "text": "See you later"
+      },
+      {
+        "intent": "despedidas",
+        "text": "See you soon"
+      },
+      {
+        "intent": "despedidas",
+        "text": "I’ve got get going"
+      },
+      {
+        "intent": "despedidas",
+        "text": "I must be going"
+      },
+      {
+        "intent": "despedidas",
+        "text": "Take it easy"
+      },
+      {
+        "intent": "despedidas",
+        "text": "I’m off"
+      },
+      {
+        "intent": "despedidas",
+        "text": "Goodnight"
+      },
+      {
+        "intent": "despedidas",
+        "text": "peace"
+      },
+      {
+        "intent": "despedidas",
+        "text": "Hasta luego"
+      },
+      {
+        "intent": "despedidas",
+        "text": "nos vemos gracias"
+      },
+      {
+        "intent": "despedidas",
+        "text": "Muchas gracias nos vemos"
+      },
+      {
+        "intent": "despedidas",
+        "text": "Hasta pronto"
+      },
+      {
+        "intent": "despedidas",
+        "text": "gracias por todo"
+      },
+      {
+        "intent": "despedidas",
+        "text": "fue un placer"
+      },
+      {
+        "intent": "despedidas",
+        "text": "gracias por todo"
+      },
+      {
+        "intent": "cotizar",
+        "text": "I would like to buy this product"
+      },
+      {
+        "intent": "cotizar",
+        "text": "I wanna buy"
+      },
+      {
+        "intent": "cotizar",
+        "text": "I would like to buy"
+      },
+      {
+        "intent": "cotizar",
+        "text": "buy this"
+      },
+      {
+        "intent": "cotizar",
+        "text": "give me the price"
+      },
+      {
+        "intent": "cotizar",
+        "text": "the price of this product"
+      },
+      {
+        "intent": "cotizar",
+        "text": "I want to buy"
+      },
+      {
+        "intent": "cotizar",
+        "text": "Can you give me the price"
+      },
+      {
+        "intent": "cotizar",
+        "text": "How much is it"
+      },
+      {
+        "intent": "cotizar",
+        "text": "How much does this cost?"
+      },
+      {
+        "intent": "cotizar",
+        "text": "How much is this?"
+      },
+      {
+        "intent": "cotizar",
+        "text": "What does this cost?"
+      },
+      {
+        "intent": "cotizar",
+        "text": "How much does it cost?"
+      },
+      {
+        "intent": "cotizar",
+        "text": "How much is it?"
+      },
+      {
+        "intent": "cotizar",
+        "text": "What does it cost?"
+      },
+      {
+        "intent": "cotizar",
+        "text": "What is the price?"
+      },
+      {
+        "intent": "cotizar",
+        "text": "Could you please tell me how much this costs?"
+      },
+      {
+        "intent": "cotizar",
+        "text": "I want to quote"
+      },
+      {
+        "intent": "cotizar",
+        "text": "I would like to quote"
+      },
+      {
+        "intent": "cotizar",
+        "text": "like to quote"
+      },
+      {
+        "intent": "cotizar",
+        "text": "Can I make a quote about this product"
+      },
+      {
+        "intent": "cotizar",
+        "text": "Check the price of"
+      },
+      {
+        "intent": "cotizar",
+        "text": "Me gustaria cotizar"
+      },
+      {
+        "intent": "cotizar",
+        "text": "cuanto cuesta este producto"
+      },
+      {
+        "intent": "cotizar",
+        "text": "cuanto cuesta?"
+      },
+      {
+        "intent": "cotizar",
+        "text": "cuál es el precio?"
+      },
+      {
+        "intent": "cotizar",
+        "text": "cuál seria el precio"
+      },
+      {
+        "intent": "cotizar",
+        "text": "A cuanto esta?"
+      },
+      {
+        "intent": "cotizar",
+        "text": "Quiero hacer una cotización"
+      },
+      {
+        "intent": "cotizar",
+        "text": "estos productos en cuanto saldrian"
+      },
+      {
+        "intent": "cotizar",
+        "text": "En cuanto saldrian?"
+      },
+      {
+        "intent": "cotizar",
+        "text": "Me podría proporcionar el precio?"
+      },
+      {
+        "intent": "cotizar",
+        "text": "Me podria proporcionar la cotización?"
+      },
+      {
+        "intent": "cotizar",
+        "text": "A cuanto me lo dejaría?"
+      },
+      {
+        "intent": "cotizar",
+        "text": "A cuanto esta?"
+      },
+      {
+        "intent": "infoB",
+        "text": "May I have Bosch contact information?"
+      },
+      {
+        "intent": "infoB",
+        "text": "Can I have Boch contact info?"
+      },
+      {
+        "intent": "infoB",
+        "text": "Bosch info"
+      },
+      {
+        "intent": "infoB",
+        "text": "I want the bosch contact info"
+      },
+      {
+        "intent": "infoB",
+        "text": "I would like to request Bosch contact information"
+      },
+      {
+        "intent": "infoB",
+        "text": "I need bosch information"
+      },
+      {
+        "intent": "infoB",
+        "text": "I want more information"
+      },
+      {
+        "intent": "infoB",
+        "text": "I could have more info?"
+      },
+      {
+        "intent": "infoB",
+        "text": "Me podria dar informacion de la empresa?"
+      },
+      {
+        "intent": "infoB",
+        "text": "Necesito informacion de la empresa"
+      },
+      {
+        "intent": "decision.prove",
+        "text": "Quiero contactar a los proveedores"
+      },
+      {
+        "intent": "decision.prove",
+        "text": "Me gustaria contactar a los proveedores"
+      },
+      {
+        "intent": "decision.prove",
+        "text": "Necesito a los proveedores"
+      },
+      {
+        "intent": "decision.prove",
+        "text": "Proveedores"
+      },
+      {
+        "intent": "decision.prove",
+        "text": "Necesito hablar con proveedores"
+      },
+      {
+        "intent": "decision.prove",
+        "text": "Hablar con proveedores"
+      },
+      {
+        "intent": "decision.prove",
+        "text": "Dame a los proveedores"
+      },
+      {
+        "intent": "decision.prove",
+        "text": "I want to talk with the supplier"
+      },
+      {
+        "intent": "decision.prove",
+        "text": "I need to talk with the suppliers"
+      },
+      {
+        "intent": "decision.prove",
+        "text": "Suppliers"
+      },
+      {
+        "intent": "decision.prove",
+        "text": "I need info about suppliers"
+      },
+      {
+        "intent": "decision.prove",
+        "text": "Take me to the suppliers"
+      },
+      {
+        "intent": "decision.prove",
+        "text": "Give me the suppliers"
+      },
+      {
+        "intent": "decision.pt",
+        "text": "Quiero contactar con PartsTech"
+      },
+      {
+        "intent": "decision.pt",
+        "text": "Me gustaria contactar a PartsTech"
+      },
+      {
+        "intent": "decision.pt",
+        "text": "Necesito a los de PartsTech"
+      },
+      {
+        "intent": "decision.pt",
+        "text": "PartsTech"
+      },
+      {
+        "intent": "decision.pt",
+        "text": "Necesito hablar con PartsTech"
+      },
+      {
+        "intent": "decision.pt",
+        "text": "Hablar con PartsTech"
+      },
+      {
+        "intent": "decision.pt",
+        "text": "Dame a PartsTech"
+      },
+      {
+        "intent": "decision.pt",
+        "text": "Dirigeme a PartsTech"
+      },
+      {
+        "intent": "decision.pt",
+        "text": "I want to talk with PartsTech"
+      },
+      {
+        "intent": "decision.pt",
+        "text": "I need to talk with PartsTech"
+      },
+      {
+        "intent": "decision.pt",
+        "text": "We need to talk with PartsTech"
+      },
+      {
+        "intent": "decision.pt",
+        "text": "Contact me with PartsTech"
+      },
+      {
+        "intent": "decision.pt",
+        "text": "Give some info about PartsTech"
+      },
+      {
+        "intent": "marca",
+        "text": "La marca es hyundai"
+      },
+      {
+        "intent": "marca",
+        "text": "Es marca hyundai"
+      },
+      {
+        "intent": "marca",
+        "text": "Es un dyundai"
+      },
+      {
+        "intent": "marca",
+        "text": "La marca del carro es hyundai"
+      },
+      {
+        "intent": "marca",
+        "text": "Es de la marca hyundai"
+      },
+      {
+        "intent": "marca",
+        "text": "Es marca hyundai"
+      },
+      {
+        "intent": "marca",
+        "text": "Es un hyundai"
+      },
+      {
+        "intent": "marca",
+        "text": "La marca es bmw"
+      },
+      {
+        "intent": "marca",
+        "text": "Es marca bmw"
+      },
+      {
+        "intent": "marca",
+        "text": "Es un bmw"
+      },
+      {
+        "intent": "marca",
+        "text": "La marca del carro es bmw"
+      },
+      {
+        "intent": "marca",
+        "text": "Es de la marca bmw"
+      },
+      {
+        "intent": "marca",
+        "text": "Es marca bmw"
+      },
+      {
+        "intent": "marca",
+        "text": "Es un bmw"
+      },
+      {
+        "intent": "marca",
+        "text": "The brand is hyundai"
+      },
+      {
+        "intent": "marca",
+        "text": "It's hyundai brand"
+      },
+      {
+        "intent": "marca",
+        "text": "It's a dyundai"
+      },
+      {
+        "intent": "marca",
+        "text": "The brand of the car is hyundai"
+      },
+      {
+        "intent": "marca",
+        "text": "It's from the hyundai brand"
+      },
+      {
+        "intent": "marca",
+        "text": "It's hyundai brand"
+      },
+      {
+        "intent": "marca",
+        "text": "It's a hyundai"
+      },
+      {
+        "intent": "marca",
+        "text": "The brand is bmw"
+      },
+      {
+        "intent": "marca",
+        "text": "It's brand bmw"
+      },
+      {
+        "intent": "marca",
+        "text": "It's a bmw"
+      },
+      {
+        "intent": "marca",
+        "text": "The brand of the car is bmw"
+      },
+      {
+        "intent": "marca",
+        "text": "It's from the brand bmw"
+      },
+      {
+        "intent": "marca",
+        "text": "It's brand bmw"
+      },
+      {
+        "intent": "marca",
+        "text": "It's a bmw"
+      },
+      {
+        "intent": "year",
+        "text": "Es del año 2019"
+      },
+      {
+        "intent": "year",
+        "text": "es año 2018"
+      },
+      {
+        "intent": "year",
+        "text": "año 2014"
+      },
+      {
+        "intent": "year",
+        "text": "Año 2013"
+      },
+      {
+        "intent": "year",
+        "text": "Año 2017"
+      },
+      {
+        "intent": "year",
+        "text": "It's from 2019"
+      },
+      {
+        "intent": "year",
+        "text": "it's year 2018"
+      },
+      {
+        "intent": "year",
+        "text": "year 2014"
+      },
+      {
+        "intent": "year",
+        "text": "Year 2013"
+      },
+      {
+        "intent": "year",
+        "text": "Year 2017"
+      },
+      {
+        "intent": "modelo",
+        "text": "es modelo elantra"
+      },
+      {
+        "intent": "modelo",
+        "text": "modelo elantra"
+      },
+      {
+        "intent": "modelo",
+        "text": "modelo i8"
+      },
+      {
+        "intent": "modelo",
+        "text": "es un modelo i8"
+      },
+      {
+        "intent": "modelo",
+        "text": "el modelo del carro es"
+      },
+      {
+        "intent": "modelo",
+        "text": "el modelo es"
+      },
+      {
+        "intent": "modelo",
+        "text": "modelo"
+      },
+      {
+        "intent": "modelo",
+        "text": "is an elantra model"
+      },
+      {
+        "intent": "modelo",
+        "text": "elantra model"
+      },
+      {
+        "intent": "modelo",
+        "text": "model i8"
+      },
+      {
+        "intent": "modelo",
+        "text": "it's an i8 model"
+      },
+      {
+        "intent": "modelo",
+        "text": "the model of the car is"
+      },
+      {
+        "intent": "modelo",
+        "text": "the model is"
+      },
+      {
+        "intent": "modelo",
+        "text": "model"
+      },
+      {
+        "intent": "modelo.sub",
+        "text": "el submodelo"
+      },
+      {
+        "intent": "modelo.sub",
+        "text": "el submodelo del carro es"
+      },
+      {
+        "intent": "modelo.sub",
+        "text": "es un submodelo"
+      },
+      {
+        "intent": "modelo.sub",
+        "text": "submodelo"
+      },
+      {
+        "intent": "modelo.sub",
+        "text": "the submodel"
+      },
+      {
+        "intent": "modelo.sub",
+        "text": "the submodel of the car is"
+      },
+      {
+        "intent": "modelo.sub",
+        "text": "it is a submodel"
+      },
+      {
+        "intent": "modelo.sub",
+        "text": "submodel"
+      },
+      {
+        "intent": "motor",
+        "text": "el nombre del motor es"
+      },
+      {
+        "intent": "motor",
+        "text": "el motor es"
+      },
+      {
+        "intent": "motor",
+        "text": "su motor es"
+      },
+      {
+        "intent": "motor",
+        "text": "el motor tiene el nombre de"
+      },
+      {
+        "intent": "motor",
+        "text": "es un motor"
+      },
+      {
+        "intent": "motor",
+        "text": "the name of the engine is"
+      },
+      {
+        "intent": "motor",
+        "text": "the engine is"
+      },
+      {
+        "intent": "motor",
+        "text": "your engine is"
+      },
+      {
+        "intent": "motor",
+        "text": "the engine has the name of"
+      }
+    ],
+    "regex_features": [],
+    "lookup_tables": [],
+    "entity_synonyms": []
+  }
+}

@@ -23,7 +23,9 @@ account_sid2 = 'AC01310a6100555a897c5e4cf36f4bc601'
 auth_token2 = '5be98f5de25583f76a5e1354f6bd442d'
 client = Client(account_sid, auth_token)
 client2 = Client(account_sid2, auth_token2)
-from models import Usuarios
+#from models import Usuarios
+
+dicInfo={}
 
 @app.route("/")
 def hello():
@@ -59,8 +61,8 @@ def messenger_reply():
     msg = request.form.get('Body')
     resp = MessagingResponse()
     parametros={"mensaje":msg}
-    print("-----------")
-    print(request.form)
+    user=request.form.get('From')
+
     r=requests.post("https://bosch-nlp.herokuapp.com/intent", json=parametros)
     toSend=r.json()["response"]["name"]
     if(str(toSend)=="saludos"):
@@ -73,20 +75,42 @@ def messenger_reply():
     elif(str(toSend)=="marca"):
         marca=msg.split()
         marca=marca[-1]
+        dicInfo[user]={"marca":marca}
         toSend="Great. What is the year of the car? marca: "+ marca
+        print(dicInfo)
     elif(str(toSend)=="year"):
         year=msg.split()
         year=year[-1]
+        res=dicInfo[user]
+        res["year"]=year
+        dicInfo[user]=res
         toSend="Okay. What is the model of the car? year: "+ year
+        print(dicInfo)        
     elif(str(toSend)=="modelo"):
         modelo=msg.split()
         modelo=modelo[-1]
+        res=dicInfo[user]
+        res["modelo"]=modelo
+        dicInfo[user]=res
         toSend="Yikes. What is the submodel of the car? modelo: "+ modelo
+        print(dicInfo)
     elif(str(toSend)=="modelo.sub"):
         submodelo=msg.split()
         submodelo=submodelo[-1]
+        res=dicInfo[user]
+        res["submodelo"]=submodelo
+        dicInfo[user]=res
         toSend="Almost done. What is the name of the engine? sub: "+ submodelo
+        print(dicInfo)
+    elif(str(toSend)=="motor"):
+        engine=msg.split()
+        engine=subenginemodelo[-1]
+        res=dicInfo[user]
+        res["engine"]=engine
+        dicInfo[user]=engine
+        print(dicInfo)
     elif(str(toSend)=="despedidas"):
+        dicInfo={}
         toSend="I'll be here if you need something else."
     else:
         print("no se pudo")

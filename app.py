@@ -68,7 +68,6 @@ def messenger_reply():
     toSend=r.json()["response"]["name"]
     if(str(toSend)=="saludos"):
         toSend="Hi, I can help you to buy automobile pars. Would you like to work with our providers or with our partner PartsTech?"
-        print("-----------------hey")
     elif(str(toSend)=="decision.pt"):
         toSend="Excelent. I'm going to ask you some questions about what you are looking for."
         dicInfo[user]={"prove":False}
@@ -89,31 +88,22 @@ def messenger_reply():
         info["marcaId"]=res[1]
         dicInfo[user]=info
         toSend="Great. What is the year of the car? marca: "+ marca +", id: "+ str(res[1])
-        print(dicInfo)
     elif(str(toSend)=="year"):
         year=msg.split()
         year=year[-1]
-        print("--dic")
-        print(dicInfo)
         res=dicInfo[user]
         res["year"]=year
         dicInfo[user]=res
         toSend="Okay. What is the model of the car? year: "+ year
-        print(dicInfo)        
     elif(str(toSend)=="modelo"):
         modelo=msg.split()
         modelo=modelo[-1]
-        print("---------------")
-        print(dicInfo)
         info=existeModelo(modelo.lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"]) #elantra
-
         res=dicInfo[user]
         res["modelo"]=modelo
         res["modeloId"]=info[1]
-
         dicInfo[user]=res
         toSend="Yikes. What is the submodel of the car? modelo: "+ modelo + " id: " + str(info[1])
-        print(dicInfo)
     elif(str(toSend)=="modelo.sub"):
         submodelo=msg.split()
         submodelo=submodelo[-1]
@@ -122,21 +112,17 @@ def messenger_reply():
         res["submodelo"]=submodelo
         res["submodeloId"]=info[1]
         dicInfo[user]=res
-
         toSend="Almost done. What is the name of the engine? sub: "+ submodelo + " id: "+ str(info[1])
-        print(dicInfo)
     elif(str(toSend)=="motor"):
         engine=msg.split()
         engine=engine[-1]
         info=existeMotor("1.8L L4 vin E DOHC  ULEV".lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"], dicInfo[user]["submodeloId"])
-
         res=dicInfo[user]
         toSend="Great! Now tell me the auto part you want to buy"
         res["engineName"]=engine
         res["engineId"]=info[1]
         res["engine"]=info[2]
         dicInfo[user]=res
-        print(dicInfo)
     elif(str(toSend)=="part"): #the part i want is the -..-.-.
         oracion=msg.split()
         index=oracion.index("is")
@@ -203,8 +189,6 @@ def messenger_reply():
     elif(str(toSend)=="despedidas"):
         dicInfo={}
         toSend="I'll be here if you need something else."
-    else:
-        print("no se pudo")
     js_save(dicInfo)
     resp.message("{}".format(toSend))
     return str(resp)

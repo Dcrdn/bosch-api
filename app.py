@@ -59,7 +59,10 @@ def messenger_reply():
     r=requests.post("https://bosch-nlp.herokuapp.com/intent", json=parametros)
     toSend=r.json()["response"]["name"]
     if(str(toSend)=="saludos"):
-        print("---------DIEGO")
+        toSend="Hola! Te puedo ayudar a comprar/cotizar autopartes con proveedores externos o con nuestro aliado PartsTech. ¿Con quien te gustaria?"
+        print("-----------------hey")
+    else:
+        print("no se pudo")
     resp.message("HERE IS YOUR MESSAGE jeje: {}".format(toSend))
     return str(resp)
 

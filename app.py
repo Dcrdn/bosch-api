@@ -28,7 +28,7 @@ client2 = Client(account_sid2, auth_token2)
 
 @app.route("/")
 def hello():
-    return "puto el que lo lea exepto Dafne, hi"
+    return "API of the team BeMyGuide at Bosch Hackathon TalentLand 2019"
 
 @app.route("/sms", methods=['POST'])
 def sms_reply():
@@ -80,14 +80,12 @@ def messenger_reply():
         resp.message("{}".format(toSend))
         toSend="What is the branch of the car?"
     elif(str(toSend)=="marca"):
-        marca=msg.split()
-        marca=marca[-1]
-        res=existeMarca(marca.lower())
+        res=existeMarca(msg.lower())
         info=dicInfo[user]
-        info["marca"]=marca
+        info["marca"]=res[0]
         info["marcaId"]=res[1]
         dicInfo[user]=info
-        toSend="Great. What is the year of the car? marca: "+ marca +", id: "+ str(res[1])
+        toSend="Great. What is the year of the car? marca: "+ res[0] +", id: "+ str(res[1])
     elif(str(toSend)=="year"):
         year=msg.split()
         year=year[-1]

@@ -71,12 +71,11 @@ def js_r():
    with open("data/response.json") as f_in:
        return(json.load(f_in))
 
-def existeMarca(name):
+def existeMarca(oracion):
+    oracion=oracion.split()
     file=js_r()
     for marca in file:
-        if(marca["makeName"].lower()==name):
-            print("found")
-            print(marca["makeName"])
+        if(marca["makeName"].lower() in oracion):
             return [marca["makeName"], marca["makeId"]]
     return [None, None]
 

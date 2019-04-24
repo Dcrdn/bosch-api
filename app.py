@@ -94,14 +94,12 @@ def messenger_reply():
         dicInfo[user]=res
         toSend="Okay. What is the model of the car? year: "+ year
     elif(str(toSend)=="modelo"):
-        modelo=msg.split()
-        modelo=modelo[-1]
-        info=existeModelo(modelo.lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"]) #elantra
+        info=existeModelo(msg.lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"]) #elantra
         res=dicInfo[user]
         res["modelo"]=modelo
         res["modeloId"]=info[1]
         dicInfo[user]=res
-        toSend="Yikes. What is the submodel of the car? modelo: "+ modelo + " id: " + str(info[1])
+        toSend="Cool. What is the submodel of the car? modelo: "+ modelo + " id: " + str(info[1])
     elif(str(toSend)=="modelo.sub"):
         submodelo=msg.split()
         submodelo=submodelo[-1]

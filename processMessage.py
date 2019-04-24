@@ -12,6 +12,9 @@ modelo.sub
 motor
 """
 
+def perro():
+    return "que pasa"
+
 def getInfo(intentName):
     if(intentName=="saludos"):
         mensaje="Hola! Te puedo ayudar a comprar/cotizar autopartes con proveedores externos o con nuestro aliado PartsTech. ¿Con quien te gustaria?"

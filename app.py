@@ -29,7 +29,7 @@ def sms_reply():
     resp = MessagingResponse()
     resp.message("*HERE IS YOUR MESSAGE*: {}".format(msg))
     message = client.messages.create(
-                              body='Hello there!',
+                              body='{}'.format(msg),
                               from_='whatsapp:+14155238886',
                               to='whatsapp:+5213332005486'
                           )

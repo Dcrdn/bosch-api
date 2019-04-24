@@ -13,8 +13,8 @@ CORS(app)
 app.config.from_object(os.environ['APP_SETTINGS'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
-account_sid = 'AC01310a6100555a897c5e4cf36f4bc601'
-auth_token = '5be98f5de25583f76a5e1354f6bd442d'
+account_sid = 'ACa9513b791536c7a97c306e8f9b6c9a79'
+auth_token = '07c24096e11336cd33017101119f72e0'
 client = Client(account_sid, auth_token)
 
 from models import Usuarios
@@ -33,7 +33,7 @@ def sms_reply():
                               from_='whatsapp:+14155238886',
                               to='whatsapp:+5213332005486'
                           )
-    return str(message.sid.body)
+    return str(resp)
 
 
 

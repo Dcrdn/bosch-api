@@ -64,7 +64,7 @@ def messenger_reply():
     toSend=r.json()["response"]["name"]
    # res=getInfo(toSend)
 
-    resp.message("HERE IS YOUR MESSAGE jeje: {}".format(res))
+    resp.message("HERE IS YOUR MESSAGE jeje: {}".format(toSend))
     return str(resp)
 
 

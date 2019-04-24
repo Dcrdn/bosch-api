@@ -66,19 +66,29 @@ def messenger_reply():
         print("-----------------hey")
     elif(str(toSend)=="decision.pt"):
         toSend="Excelent. I'm going to ask you some questions about what you are looking for."
-        resp.message("HERE IS YOUR MESSAGE jeje: {}".format(toSend))
+        resp.message("{}".format(toSend))
         toSend="What is the branch of the car?"
     elif(str(toSend)=="marca"):
-        toSend="Great. What is the year of the car?"
+        marca=msg.split()
+        marca=marca[-1]
+        toSend="Great. What is the year of the car? marca: "+ marca
     elif(str(toSend)=="year"):
-        toSend="Okay. What is the model of the car?"
+        year=msg.split()
+        year=year[-1]
+        toSend="Okay. What is the model of the car? year: "+ year
     elif(str(toSend)=="modelo"):
-        toSend="Yikes. What is the submodel of the car?"
+        modelo=msg.split()
+        modelo=modelo[-1]
+        toSend="Yikes. What is the submodel of the car? modelo: "+ modelo
     elif(str(toSend)=="modelo.sub"):
-        toSend="Almost done. What is the name of the engine?"
+        submodelo=msg.split()
+        submodelo=submodelo[-1]
+        toSend="Almost done. What is the name of the engine? sub: "+ submodelo
+    elif(str(toSend)=="despedidas"):
+        toSend="I'll be here if you need something else."
     else:
         print("no se pudo")
-    resp.message("HERE IS YOUR MESSAGE jeje: {}".format(toSend))
+    resp.message("{}".format(toSend))
     return str(resp)
 
 if __name__ == '__main__':

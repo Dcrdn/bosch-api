@@ -63,6 +63,7 @@ def messenger_reply():
     resp = MessagingResponse()
     parametros={"mensaje":msg}
     user=request.form.get('From')
+    user=json.loads(user)
     print(user)
     print(type(user))
     print(user["messenger"])

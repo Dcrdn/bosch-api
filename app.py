@@ -92,6 +92,8 @@ def messenger_reply():
     elif(str(toSend)=="modelo"):
         modelo=msg.split()
         modelo=modelo[-1]
+        print("---------------")
+        print(dicInfo)
         info=existeModelo(modelo.lower(), dicInfo["year"], dicInfo["marcaId"]) #elantra
 
         res=dicInfo[user]

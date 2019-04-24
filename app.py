@@ -111,8 +111,12 @@ def messenger_reply():
         res["engine"]=engine
         dicInfo[user]=engine
         print(dicInfo)
-    elif(str(toSend)=="part"):
-        toSend="The part you want to buy costs: X"
+    elif(str(toSend)=="part"): #the part i want is the -..-.-.
+        oracion=msg.split()
+        index=oracion.index("is")
+        message=oracion[index+2:]
+        part=' '.join(message)
+        toSend="The part you want to buy costs: X. part is: "+ part
         resp.message("{}".format(toSend))
         toSend="Do you want to add it to your cart?"
     elif(str(toSend)=="cart"):

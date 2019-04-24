@@ -133,18 +133,41 @@ def messenger_reply():
         message=oracion[index+2:]
         part=' '.join(message)
         price= getPrice(dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"], dicInfo[user]["submodeloId"], dicInfo[user]["engineId"], dicInfo[user]["engine"]["engineParams"], part)
-        toSend="The part you want to buy costs: X. part is: "+ part+ " with price: "+ str(price)
+        idPart=price[0]
+        price=price[3]
+        
+        res=dicInfo[user]
+        res["partId"]=idPart
+        res["partPrice"]=price
+        res["partName"]=part
+
+        dicInfo[user]=res
+        toSend="The part you want to buy costs: X. part is: "+ part+ " with id: "+ str(idPart) +" with price"+ str(price)
         resp.message("{}".format(toSend))
         toSend="Do you want to add it to your cart?"
     elif(str(toSend)=="cart"):
         #aqui la agrego al carrito
+        info=dicInfo[user]
+        if("cart" in info):
+            data=info["cart"]
+            data.append([dicInfo[user]["partId"],dicInfo[user]["partName"], dicInfo[user]["partPrice"]])
+            info["cart"]=data
+        else:
+            info["cart"]=[[dicInfo[user]["partId"],dicInfo[user]["partName"], dicInfo[user]["partPrice"]]]
+        dicInfo=info
         toSend="Do you want to buy something else or you want to do the checkout?"
     elif(str(toSend)=="buyelse"):
         toSend="Is it for the same car?"
     elif(str(toSend)=="samecar"):
         toSend="Great! Now tell me the auto part you want to buy"
     elif(str(toSend)=="checkout"):
-        toSend="your total would be Y ammount"
+        comprar=dicInfo[user]["cart"]
+        total=0
+        for element in comprar:
+            total+=int(element[2])
+            toSend="Product: " + element[1] +"   Price: " + str(element[2])
+            resp.message("{}".format(toSend))            
+        toSend="Your total is: " + str(total)
         resp.message("{}".format(toSend))
         toSend="Do you want to pay with whatsapp payments or via bank deposit?"
     elif(str(toSend)=="bankdeposit"):

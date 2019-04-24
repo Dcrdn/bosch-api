@@ -10,6 +10,11 @@ year
 modelo
 modelo.sub
 motor
+    if(toSend=="saludos"):
+        toSend="Hola! Te puedo ayudar a comprar/cotizar autopartes con proveedores externos o con nuestro aliado PartsTech. ¿Con quien te gustaria?"
+    else:
+        toSend= "not possible"
+    resp.message("HERE IS YOUR MESSAGE jeje: {}".format(toSend))
 """
 
 def getInfo(intentName):

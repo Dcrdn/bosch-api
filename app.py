@@ -164,7 +164,9 @@ def messenger_reply():
         toSend="Great! Now tell me the auto part you want to buy"
     elif(str(toSend)=="checkout"):
         print("////////")
-        print(dicInfo)
+        print("////////")
+        print("////////")
+        print(dicInfo[user])
         comprar=dicInfo[user]["cart"]
         total=0
         for element in comprar:

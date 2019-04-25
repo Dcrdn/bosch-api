@@ -247,16 +247,15 @@ def messenger_reply():
     if(str(toSend)=="saludos"):
         toSend="Hi, I can assist you to buy automobile parts. Would you like to work with our suppliers or with our partner PartsTech?"
     elif(str(toSend)=="decision.pt"):
-        toSend="Excelent. I'm going to ask you some questions about what you are looking for."
+        toSend="What is the branch of the car?"
         dicInfo[user]={"prove":False, "next":"marca"}
         resp.message("{}".format(toSend))
-        toSend="What is the branch of the car?"
+        toSend="Excelent. I'm going to ask you some questions about what you are looking for."
     elif(str(toSend)=="decision.prove"):
         dicInfo[user]={"prove":True, "next":"marca"}
-
-        toSend="Excelent. I'm going to ask you some questions about what you are looking for."
-        resp.message("{}".format(toSend))
         toSend="What is the branch of the car?"
+        resp.message("{}".format(toSend))
+        toSend="Excelent. I'm going to ask you some questions about what you are looking for."
     elif(str(toSend)=="marca"):
         res=existeMarca(msg.lower())
         if(res==None):

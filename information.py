@@ -121,6 +121,7 @@ def submitCart(storeId, lista): #partId, quantity
     url="https://api.beta.partstech.com/punchout/cart/create"
     parametros={"orders":{"storeId": storeId, "parts": lista}}
     print("por hace request a submit cart")
+    print(parametros)
     r=requests.post(urlGetPrice, headers=auth, json=parametros)
     print("se pudo hacer el request a submit cart")
     print(r.json())

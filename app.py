@@ -345,7 +345,7 @@ def messenger_reply():
             if(str(element["number"])==str(msg)):
                 modelo=element["name"]
                 break
-        info=existeMotor(modelo, dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"], dicInfo[user]["submodeloId"])
+        info=existeMotor(modelo.lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"], dicInfo[user]["submodeloId"])
         
         if(info==None):
             toSend="We didn't find that model in our database. Try with another one"            
@@ -357,6 +357,8 @@ def messenger_reply():
             res["engine"]=info[2]
             res["next"]="part"
             dicInfo[user]=res
+        print("------")
+        print(dicInfo)
     elif(str(toSend)=="part"): #the part i want is the -..-.-.
         part=existeParte(msg.lower())
         if(part==None):

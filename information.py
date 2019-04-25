@@ -99,14 +99,18 @@ def existeModelo(oracion, year, marcaId): #make id que recibi de marca
 
 def existeSubmodelo(oracion, year, marcaId, modelId):
     result=getSubModels(year, marcaId, modelId)
+    print("SUBMODELOS")
     for submodelo in result:
+        print(submodelo["submodelName"])
         if(submodelo["submodelName"].lower() in oracion):
             return [submodelo["submodelName"], submodelo["submodelId"]]
     return [None, None]
 
 def existeMotor(oracion, year, marcaId, modelId, submodelId):
     result=getEngines(year, marcaId, modelId, submodelId)
+    print("MOTORES")
     for engine in result:
+        print(engine["engineName"])
         if(engine["engineName"].lower() in oracion):
             return [engine["engineName"], engine["engineId"], engine]
     return [None, None, None]

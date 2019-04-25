@@ -120,6 +120,7 @@ def existeMotor(oracion, year, marcaId, modelId, submodelId):
 
 def submitCart(storeId, lista): #partId, quantity
     url="https://api.beta.partstech.com/punchout/cart/create"
+    storeId=1
     parametros={"orders":{"storeId": storeId, "parts": lista}}
     print("por hace request a submit cart")
     print(parametros)

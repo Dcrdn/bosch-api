@@ -189,7 +189,7 @@ def messenger_reply2():
                               body='Great. Here you have the bank details',
                               from_=request.form.get('To'),
                               to=user,
-                              media_url='https://www.bullguard.com/getmedia/b3d3d605-2dd5-4f69-98e9-c6f20b6a6b81/bank_transfer2'
+                              media_url='https://granitestateartsmarket.com/wp-content/uploads/2018/02/awesome-collection-of-letters-bank-76-images-7-bank-reference-letter-templates-free-also-bank-reference-letter-hsbc-of-bank-reference-letter-hsbc.jpg'
                           )
         toSend="Please provide us an address and name to send the product when your payment is accepted"
     elif(str(toSend)=="address"):

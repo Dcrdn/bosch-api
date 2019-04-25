@@ -20,10 +20,12 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 account_sid = 'ACa9513b791536c7a97c306e8f9b6c9a79'
 auth_token = '07c24096e11336cd33017101119f72e0'
+account_sid_facebook = 'XE098827886889a9f1a55ab3c1f6056d3a'
 account_sid2 = 'AC01310a6100555a897c5e4cf36f4bc601'
 auth_token2 = '5be98f5de25583f76a5e1354f6bd442d'
 client = Client(account_sid, auth_token)
 client2 = Client(account_sid2, auth_token2)
+client3 = Client(account_sid_facebook, auth_toke)
 #from models import Usuarios
 
 @app.route("/")
@@ -212,10 +214,12 @@ def messenger_reply():
     elif(str(toSend)=="bankdeposit"):
         print(request.form.get('To'))
         print(request.form.get('From'))
-        message = client.messages.create(
+        message = client3.messages.create(
             body="Great. Here you have the bank details",
             from_=request.form.get('To'),
             to=request.form.get('From'),
+            media_url='https://frasesparami.com/wp-content/uploads/2017/06/IMAGENES-DE-RISA-CON-FRASES.jpg'
+
         )
         print(message)
         toSend="Please provide us an address and name to send the product when your payment is accepted"

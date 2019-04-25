@@ -339,6 +339,11 @@ def messenger_reply():
         toSend="Do you want to buy something else or do you want send the request to our providers?"
     elif(str(toSend)=="providers"): #diego --> pieces
         #envio a provedores, hacer algo aqui en whats
+        client.messages.create(
+            to="+whatsapp:+5213314585897",
+            from_=request.form.get('To'),
+            body=res["partId"]
+        )
         toSend="aqui se hace algo pero pa wats juejue"
     elif(str(toSend)=="cart"):
         #aqui la agrego al carrito

@@ -189,7 +189,7 @@ def messenger_reply2():
         print("/////")
         print(dicInfo)
         for element in comprar:
-            temp={"partId":dicInfo["partId"], "quantity":1}
+            temp={"partId":dicInfo[user]["partId"], "quantity":1}
             lista.append(temp)
         sessionId=submitCart("beta_bosch", lista)
         print("wuu tengo el session id "+ str(sessionId))
@@ -370,7 +370,7 @@ def messenger_reply():
         #{partId, quantity}
         lista=[]
         for element in comprar:
-            temp={"partId":dicInfo["partId"], "quantity":1}
+            temp={"partId":dicInfo[user]["partId"], "quantity":1}
             lista.append(temp)
         sessionId=submitCart("beta_bosch", lista)
         print("wuu tengo el session id "+ str(sessionId))

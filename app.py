@@ -31,7 +31,7 @@ def hello():
     return "API of the team BeMyGuide at Bosch Hackathon TalentLand 2019"
 
 @app.route("/sms", methods=['POST'])
-def messenger_reply():
+def messenger_reply2():
     msg = request.form.get('Body')
     resp = MessagingResponse()
     parametros={"mensaje":msg}

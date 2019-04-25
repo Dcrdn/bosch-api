@@ -428,8 +428,6 @@ def messenger_reply():
             idPart=price[0]
             price=price[3]
             urlImage=price[2]
-
-
             res=dicInfo[user]
             res["partId"]=idPart
             res["partPrice"]=price
@@ -444,6 +442,9 @@ def messenger_reply():
                 toSend="Do you want to add it to your cart?"
                 res["next"]="cart"
             dicInfo[user]=res
+            print("--------aaaaaa")
+            print(dicInfo)
+
     elif(str(toSend)=="pieces"): #diego --> pieces
         piezas=msg.split()
         piezas=piezas[-1]
@@ -467,6 +468,9 @@ def messenger_reply():
             info["cart"]=[[dicInfo[user]["partId"],dicInfo[user]["partName"], dicInfo[user]["partPrice"]]]
         info["next"]=None
         dicInfo[user]=info
+        print("before checkout")
+        print(dicInfo)
+        
         toSend="Do you want to buy something else or you want to do the checkout?"
     elif(str(toSend)=="buyelse"):
         toSend="Is it for the same car?"

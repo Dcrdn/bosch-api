@@ -186,7 +186,7 @@ def messenger_reply2():
         toSend="Do you want to pay with whatsapp payments or via bank deposit?"
     elif(str(toSend)=="bankdeposit"):
         message = client.messages.create(
-                              body='{}'.format(msg),
+                              body='Great. Here you have the bank details',
                               from_=request.form.get('To'),
                               to=user,
                               media_url='https://www.bullguard.com/getmedia/b3d3d605-2dd5-4f69-98e9-c6f20b6a6b81/bank_transfer2'

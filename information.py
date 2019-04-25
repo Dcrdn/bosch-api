@@ -118,17 +118,19 @@ def existeMotor(oracion, year, marcaId, modelId, submodelId):
 
 #orders: [ storeId, parts: [ {partId: idPart, quantity: 1} ] ]
 
-def submitCart(storeId, lista): #partId, quantity
+def submitCart(storeId, lista, payload): #partId, quantity
     url="https://api.beta.partstech.com/punchout/cart/create"
     storeId=1
-    parametros={"orders":{"storeId": storeId, "parts": lista}}
+    parametros={"orders":[{"storeId": 1, "parts": lista}]}
     print("por hace request a submit cart")
     print(parametros)
-    r=requests.post(urlGetPrice, headers=auth, json=parametros)
+    r=requests.post(url, headers=auth, json=parametros)
     print("se pudo hacer el request a submit cart")
     print(r.json())
     sessionId=r.json()["sessionId"]
     return sessionId
+
+#temp={"partId":str(dicInfo[user]["partId"]), "lineCardId":123, quantity":1}
 
 def getCart(sessionId):
     url="https://api.beta.partstech.com/punchout/cart/info"
@@ -183,7 +185,34 @@ idModelo=data2[1]
 idSubmodelo=data3[1]
 idEngine=data4[1]
 engineParams=data4[2]["engineParams"]
-result= getPrice(year, idMarca, idModelo, idSubmodelo, idEngine, engineParams, "Air Filter")"""
+result= getPrice(year, idMarca, idModelo, idSubmodelo, idEngine, engineParams, "Air Filter")
+"""
 
 
 #print(existeParte("Air Filter".lower()))
+lista=[]
+dic={"partId":"1040", "lineCardId":123, "quantity":1}
+
+lista.append(dic)
+payload={
+	"orders": [
+		{
+		"storeId": 1,
+		"parts": [
+				{
+				"partId": "ABCD-12345",
+				"lineCardId": 123,
+				"quantity": 10
+				}
+			]
+			}
+		]
+}
+
+#submitCart(1, lista, payload)
+"""
+1040
+
+
+
+"""

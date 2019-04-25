@@ -373,12 +373,13 @@ def messenger_reply():
             total+=int(element[2])
             toSend="Product: " + element[1] +"   Price: " + str(element[2])
             resp.message("{}".format(toSend))
-            temp={"partId":dicInfo[user]["partId"], "quantity":1}
+            #temp={"partId":dicInfo[user]["partId"], "quantity":1}
+            temp={"partId":str(dicInfo[user]["partId"]), "lineCardId":123, quantity":1}
             lista.append(temp)
-        #sessionId=submitCart("beta_bosch", lista)
-        #print("wuu tengo el session id "+ str(sessionId))
-        #price=getCart(sessionId)
-        #print("wuu tengo el price")
+        sessionId=submitCart("beta_bosch", lista)
+        print("wuu tengo el session id "+ str(sessionId))
+        price=getCart(sessionId)
+        print("wuu tengo el price")
         toSend="Your total is: " + str(total)
         resp.message("{}".format(toSend))
         toSend="Do you want to pay with messenger payments or via bank deposit?"

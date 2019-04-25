@@ -366,11 +366,11 @@ def messenger_reply():
         for element in comprar:
             temp={"partId":dicInfo["partId"], "quantity":1}
             lista.append(temp)
-        #sessionId=submitCart("beta_bosch", lista)
-        #print("wuu tengo el session id "+ str(sessionId))
-        #price=getCart(sessionId)
-        #print("wuu tengo el price")
-        #toSend="Your total is: " + str(price)
+        sessionId=submitCart("beta_bosch", lista)
+        print("wuu tengo el session id "+ str(sessionId))
+        price=getCart(sessionId)
+        print("wuu tengo el price")
+        toSend="Your total is: " + str(price)
         resp.message("{}".format(toSend))
         toSend="Do you want to pay with whatsapp payments or via bank deposit?"
     elif(str(toSend)=="bankdeposit"):

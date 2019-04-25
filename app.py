@@ -210,6 +210,8 @@ def messenger_reply():
         resp.message("{}".format(toSend))
         toSend="Do you want to pay with whatsapp payments or via bank deposit?"
     elif(str(toSend)=="bankdeposit"):
+        print(request.form.get('To'))
+        print(request.form.get('From'))
         client.messages.create(
             body="Great. Here you have the bank details",
             from_=request.form.get('To'),

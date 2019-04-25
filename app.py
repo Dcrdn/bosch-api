@@ -45,11 +45,6 @@ def messenger_reply2():
     toSend=r.json()["response"]["name"]
     user=str(user)
     dicInfo=js_read()
-    client.messages.create(
-        to=request.form.get('From'),
-        from_=request.form.get('To'),
-        body="Hi Joe! Please find your boarding pass attached. Flight OA2345 departs at 11 pm PST.",
-        media_url="https://emerald-coral-3661.twil.io/assets/2-OwlAir-Upcoming-Trip.PNG")
 
     if(toSend==None):
         a=1
@@ -200,12 +195,15 @@ def messenger_reply2():
         time.sleep(2)
         toSend="Do you want to pay with whatsapp payments or via bank deposit?"
     elif(str(toSend)=="bankdeposit"):
-        client.messages.create(
-            body='Great. Here you have the bank details',
-            from_=other,
-            to=user,
-            media_url='https://www.usunlocked.com/wp-content/uploads/2016/07/Bank_Transfer_Step4-750x349.png'
-        )
+        toSend = "Great. Here you have the bank details"
+        resp.message("{}".format(toSend))
+        time.sleep(2)
+        toSend = "Bank Account: XXXXXXXXXXXXXXXXXXXXXXX"
+        resp.message("{}".format(toSend))
+        time.sleep(2)
+        toSend = "Reference: XXXX"
+        resp.message("{}".format(toSend))
+        time.sleep(2)
         toSend="Please provide us an address and name to send the product when your payment is accepted"
     elif(str(toSend)=="address"):
         toSend="Perfect. We will let you know when your package it's on it's way"
@@ -374,10 +372,13 @@ def messenger_reply():
     elif(str(toSend)=="bankdeposit"):
         toSend = "Great. Here you have the bank details"
         resp.message("{}".format(toSend))
+        time.sleep(2)
         toSend = "Bank Account: XXXXXXXXXXXXXXXXXXXXXXX"
         resp.message("{}".format(toSend))
+        time.sleep(2)
         toSend = "Reference: XXXX"
         resp.message("{}".format(toSend))
+        time.sleep(2)
         toSend="Please provide us an address and name to send the product when your payment is accepted"
     elif(str(toSend)=="address"):
         toSend="Perfect. We will let you know when your package it's on it's way"

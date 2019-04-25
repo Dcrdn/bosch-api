@@ -139,7 +139,7 @@ def getCart(sessionId):
     r=requests.post(url, headers=auth, json=parametros)
     print("wuu tengo request")
     print(r.json())
-    totalPrice=r.json()["order"][0]["totalPrice"]
+    totalPrice=r.json()["orders"][0]["totalPrice"]
     return totalPrice
 
 #yearId, makeId, modelId, subModelId, engineId, engineParams: engineVinId,

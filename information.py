@@ -119,7 +119,7 @@ def existeMotor(oracion, year, marcaId, modelId, submodelId):
 
 def submitCart(storeId, lista): #partId, quantity
     url="https://api.beta.partstech.com/punchout/cart/create"
-    parametros={"orders":{"storeId": storeId, "parts": lista}
+    parametros={"orders":{"storeId": storeId, "parts": lista}}
     print("por hace request a submit cart")
     r=requests.post(urlGetPrice, headers=auth, json=parametros)
     print("se pudo hacer el request a submit cart")

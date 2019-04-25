@@ -71,7 +71,7 @@ def messenger_reply():
             toSend=dicInfo[user]["next"]
 
     if(str(toSend)=="saludos"):
-        toSend="Hi, I can help you to buy automobile pars. Would you like to work with our providers or with our partner PartsTech?"
+        toSend="Hi, I can assist you to buy automobile parts. Would you like to work with our suppliers or with our partner PartsTech?"
     elif(str(toSend)=="decision.pt"):
         toSend="Excelent. I'm going to ask you some questions about what you are looking for."
         dicInfo[user]={"prove":False, "next":"marca"}
@@ -159,6 +159,8 @@ def messenger_reply():
         piezas=oracion[-2]
         res=dicInfo[user]
         res["totalPieces"]=piezas
+        res["next"]=None
+
         dicInfo[user]=res
         toSend="Do you want to buy something else or do you want send the request to our providers?"
     elif(str(toSend)=="providers"): #diego --> pieces

@@ -343,7 +343,7 @@ def messenger_reply():
         toSend="Do you want to buy something else or do you want send the request to our Jobbers?"
     elif(str(toSend)=="jobbers"): #diego --> pieces
         #envio a provedores, hacer algo aqui en whats
-        toSend="Contacting witht them..."
+        toSend="aqui se hace algo pero pa wats juejue"
     elif(str(toSend)=="cart"):
         #aqui la agrego al carrito
         info=dicInfo[user]

@@ -348,10 +348,14 @@ def messenger_reply():
             res["modeloId"]=info[1]
             res["next"]="modelo.sub"
             toSend="Cool. What is the submodel of the car?\n"
-            submodelos=getSubModels(dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"])
+            submodelos=getSubModels(dicInfo[user]["year"], dicInfo[user]["marcaId"], info[1])
             opciones=[]
             counter=1
             string="Options \n"
+            print("submodelos")
+            print(submodelos)
+            print("-----------------")
+
             for submodelo in submodelos:
                 string+=str(counter)+ "-  "+submodelo["submodelName"] +" \n"
                 temp={"number":counter, "name":submodelo["submodelName"]}

@@ -136,7 +136,7 @@ def getCart(sessionId):
     url="https://api.beta.partstech.com/punchout/cart/info"
     parametros={"sessionId":sessionId}
     print("por llamar get cart")
-    r=requests.get(url, headers=auth, params=parametros)
+    r=requests.post(url, headers=auth, json=parametros)
     print("wuu tengo request")
     print(r.json())
     totalPrice=r.json()["totalPrice"]

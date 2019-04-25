@@ -142,14 +142,18 @@ def messenger_reply():
         res["partPrice"]=price
         res["partName"]=part
 
-        dicInfo[user]=res
         prove=dicInfo[user]["prove"]
         if(prove):
             toSend="Tell me how many pieces do you want"
+            res["next"]="pieces"
         else:    
-            toSend="The part you want to buy costs: X. part is: "+ part+ " with id: "+ str(idPart) +" with price"+ str(price)
+            toSend="The "+ part +" costs: "+ str(price) 
             resp.message("{}".format(toSend))
             toSend="Do you want to add it to your cart?"
+            res["next"]="cart"
+
+        dicInfo[user]=res
+
     elif(str(toSend)=="pieces"): #diego --> pieces
         piezas=msg.split()
         piezas=oracion[-2]

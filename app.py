@@ -193,7 +193,7 @@ def messenger_reply():
     elif(str(toSend)=="buyelse"):
         toSend="Is it for the same car?"
     elif(str(toSend)=="samecar"):
-        toSend="Great! Now tell me the auto part you want to buy"
+        toSend="Great!  Now tell me the auto part you want to buy"
     elif(str(toSend)=="checkout"):
         comprar=dicInfo[user]["cart"]
         total=0

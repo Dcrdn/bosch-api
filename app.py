@@ -9,6 +9,7 @@ from twilio.rest import Client
 from information import existeMarca, existeModelo, existeSubmodelo, existeMotor, getPrice, js_read, js_save, existeParte
 import requests
 import sys
+import time
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
@@ -50,6 +51,7 @@ def messenger_reply2():
         dicInfo[user]["next"]=None
         js_save(dicInfo)
         resp.message("{}".format(toSend))
+        time.sleep(2)
         return str(resp)   
     if(user in dicInfo):
         if(dicInfo[user]["next"]!=None):
@@ -61,12 +63,15 @@ def messenger_reply2():
         toSend="Excelent. I'm going to ask you some questions about what you are looking for."
         dicInfo[user]={"prove":False, "next":"marca"}
         resp.message("{}".format(toSend))
+        time.sleep(2)
         toSend="What is the branch of the car?"
     elif(str(toSend)=="decision.prove"):
         dicInfo[user]={"prove":True, "next":"marca"}
 
         toSend="Excelent. I'm going to ask you some questions about what you are looking for."
         resp.message("{}".format(toSend))
+        time.sleep(2)
+
         toSend="What is the branch of the car?"
     elif(str(toSend)=="marca"):
         res=existeMarca(msg.lower())
@@ -140,6 +145,7 @@ def messenger_reply2():
             else:    
                 toSend="The "+ part +" costs: "+ str(price) 
                 resp.message("{}".format(toSend))
+                time.sleep(2)
                 toSend="Do you want to add it to your cart?"
                 res["next"]="cart"
             dicInfo[user]=res
@@ -180,9 +186,11 @@ def messenger_reply2():
         for element in comprar:
             total+=int(element[2])
             toSend="Product: " + element[1] +"   Price: " + str(element[2])
-            resp.message("{}".format(toSend))            
+            resp.message("{}".format(toSend))   
+            time.sleep(2)         
         toSend="Your total is: " + str(total)
         resp.message("{}".format(toSend))
+        time.sleep(2)
         toSend="Do you want to pay with whatsapp payments or via bank deposit?"
     elif(str(toSend)=="bankdeposit"):
         message = client.messages.create(
@@ -199,6 +207,7 @@ def messenger_reply2():
         toSend="I'll be here if you need something else."
     js_save(dicInfo)
     resp.message("{}".format(toSend))
+    time.sleep(2)
     return str(resp)
 
 @app.route("/messenger", methods=['POST'])

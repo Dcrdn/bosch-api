@@ -214,8 +214,8 @@ def messenger_reply():
         print(request.form.get('From'))
         client.messages.create(
             body="Great. Here you have the bank details",
-            from_=request.form.get('To'),
-            to=request.form.get('From'),
+            from_=request.form.get('From'),
+            to=request.form.get('To'),
             media_url='https://frasesparami.com/wp-content/uploads/2017/06/IMAGENES-DE-RISA-CON-FRASES.jpg'
         )
         toSend="Please provide us an address and name to send the product when your payment is accepted"

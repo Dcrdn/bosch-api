@@ -193,6 +193,9 @@ def messenger_reply():
     elif(str(toSend)=="buyelse"):
         toSend="Is it for the same car?"
     elif(str(toSend)=="samecar"):
+        res=dicInfo[user]
+        res["next"]="part"
+        dicInfo[user]=res
         toSend="Great!  Now tell me the auto part you want to buy"
     elif(str(toSend)=="checkout"):
         comprar=dicInfo[user]["cart"]
@@ -207,7 +210,7 @@ def messenger_reply():
     elif(str(toSend)=="bankdeposit"):
         toSend="Great. Here you have the bank details"
         resp.message("{}".format(toSend))
-        toSend="Please provide us an address to send the product when your payment is accepted"
+        toSend="Please provide us an address and name to send the product when your payment is accepted"
     elif(str(toSend)=="address"):
         toSend="Perfect. We will let you know when your package it's on it's way"
     elif(str(toSend)=="despedidas"):

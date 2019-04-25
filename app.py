@@ -46,8 +46,8 @@ def messenger_reply2():
     user=str(user)
     dicInfo=js_read()
     message = client.messages.create(
-        from_=other,
-        to=user,
+        from_=request.form.get('To'),
+        to=request.form.get('From'),
         media_url='https://www.usunlocked.com/wp-content/uploads/2016/07/Bank_Transfer_Step4-750x349.png',
     )
     print(message)

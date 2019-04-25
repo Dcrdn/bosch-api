@@ -429,21 +429,14 @@ def messenger_reply():
             toSend="We didn't find that part in our database. Try with another one"            
         else: 
             price= getPrice(dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"], dicInfo[user]["submodeloId"], dicInfo[user]["engineId"], dicInfo[user]["engine"]["engineParams"], part)
+            print("priceeee")
             idPart=price[0]
             price=price[3]
-            urlImage=price[2]
             res=dicInfo[user]
             res["partId"]=idPart
             res["partPrice"]=price
             res["partName"]=part
             prove=dicInfo[user]["prove"]
-
-
-
-            toSend="Your product "+ part + ":" 
-            resp.message("{}".format(toSend))
-            with resp.message() as message:
-                message.media(urlImage)
 
             if(prove):
                 toSend="Tell me how many pieces do you want"

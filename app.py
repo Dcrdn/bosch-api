@@ -25,7 +25,7 @@ account_sid2 = 'AC01310a6100555a897c5e4cf36f4bc601'
 auth_token2 = '5be98f5de25583f76a5e1354f6bd442d'
 client = Client(account_sid, auth_token)
 client2 = Client(account_sid2, auth_token2)
-client3 = Client(account_sid_facebook, auth_toke)
+client3 = Client(account_sid_facebook, auth_token)
 #from models import Usuarios
 
 @app.route("/")

@@ -96,30 +96,75 @@ def messenger_reply2():
         toSend="Okay. What is the model of the car?"
     elif(str(toSend)=="modelo"):
         info=existeModelo(msg.lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"]) #elantra
-        if(info[1]==None):
+        if(info==None):
             toSend="We didn't find that model in our database. Try with another one"            
-        else: 
+        else:  #modified this
             res=dicInfo[user]
             res["modelo"]=info[0]
             res["modeloId"]=info[1]
             res["next"]="modelo.sub"
+            toSend="Cool. What is the submodel of the car?\n"
+            submodelos=getSubModels(dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"])
+            opciones=[]
+            counter=1
+            string="Options \n"
+            for submodelo in submodelos:
+                string+=str(counter)+ "-  "+submodelo["submodelName"] +" \n"
+                temp={"number":counter, "name":submodelo["submodelName"]}
+                opciones.append(temp)
+                counter+=1
+            toSend+=string
+            res["submodelos"]=opciones
             dicInfo[user]=res
-            toSend="Cool. What is the submodel of the car?"
     elif(str(toSend)=="modelo.sub"):
-        info=existeSubmodelo(msg.lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"])
-        if(info[1]==None):
-            toSend="We didn't find that submodel in our database. Try with another one"            
-        else: 
-            res=dicInfo[user]
-            res["submodelo"]=info[0]
-            res["submodeloId"]=info[1]
-            res["next"]="motor"
-            dicInfo[user]=res
-            toSend="Almost done. What is the name of the engine? "
+        modelossub=dicInfo[user]["submodelos"]
+        modelo=""
+        for element in modelossub:
+            if(str(element["number"])==str(msg)):
+                modelo=element["name"]
+                break
+        print("modelo")
+        print(modelo)
+
+        info=existeSubmodelo(modelo.lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"])
+        print(info)
+        #if(info==None):
+        #    toSend="We didn't find that submodel in our database. Try with another one"            
+        #else: 
+        res=dicInfo[user]
+        res["submodelo"]=info[0]
+        res["submodeloId"]=info[1]
+        res["next"]="motor"
+        toSend="Almost done. What is the name of the engine? \n"
+        #jejediego
+        opciones=[]
+        counter=1
+        string="Options \n"
+        
+        result=getEngines(dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"], info[1])
+        print("result")
+        print(result)
+        print("res")
+        print(res)
+        for engine in result:
+            string+=str(counter)+ "-  "+engine["engineName"] +" \n"
+            temp={"number":counter, "name":engine["engineName"]}
+            opciones.append(temp)
+            counter+=1
+        toSend+=string
+        res["engines"]=opciones
+        dicInfo[user]=res
     elif(str(toSend)=="motor"):
-        info=existeMotor(msg.lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"], dicInfo[user]["submodeloId"])
-        if(info[1]==None):
-            toSend="We didn't find that engine in our database. Try with another one"            
+        modelossub=dicInfo[user]["engines"]
+        modelo=""
+        for element in modelossub:
+            if(str(element["number"])==str(msg)):
+                modelo=element["name"]
+                break
+        info=existeMotor(modelo.lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"], dicInfo[user]["submodeloId"])
+        
+        if(info==None):
+            toSend="We didn't find that model in our database. Try with another one"            
         else: 
             res=dicInfo[user]
             toSend="Great! Now tell me the auto part you want to buy"
@@ -128,6 +173,8 @@ def messenger_reply2():
             res["engine"]=info[2]
             res["next"]="part"
             dicInfo[user]=res
+        print("------")
+        print(dicInfo)
     elif(str(toSend)=="part"): #the part i want is the -..-.-.
         part=existeParte(msg.lower())
         if(part==None):
@@ -203,6 +250,7 @@ def messenger_reply2():
         toSend="Do you want to pay with whatsapp payments or via bank deposit?"
     elif(str(toSend)=="bankdeposit"):
         toSend = "Great. Here you have the bank details"
+        """
         resp.message("{}".format(toSend))
         time.sleep(2)
         toSend = "Bank Account: XXXXXXXXXXXXXXXXXXXXXXX"
@@ -210,6 +258,9 @@ def messenger_reply2():
         time.sleep(2)
         toSend = "Reference: XXXX"
         resp.message("{}".format(toSend))
+        """
+        with resp.message() as message:
+            message.media('https://www.usunlocked.com/wp-content/uploads/2016/07/Bank_Transfer_Step4-750x349.png')
         time.sleep(2)
         toSend="Please provide us an address and name to send the product when your payment is accepted"
     elif(str(toSend)=="address"):

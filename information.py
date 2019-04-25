@@ -76,9 +76,8 @@ def js_r2():
        return(json.load(f_in))
 
 def existeParte(oracion):
-    file=js_r()
+    file=js_r2()
     for parte in file:
-        print("itera")
         if(parte["partTypeName"].lower() in oracion):
             return parte["partTypeName"]
     return None
@@ -142,6 +141,7 @@ def js_save(dictionary):
         json.dump(dictionary, fp)
 
 #sonata
+"""
 data=existeMarca("Hyundai".lower())
 data2=existeModelo("Elantra".lower(), 2016, data[1])
 data3=existeSubmodelo("GL".lower(), 2016, data[1], data2[1])
@@ -153,4 +153,7 @@ idModelo=data2[1]
 idSubmodelo=data3[1]
 idEngine=data4[1]
 engineParams=data4[2]["engineParams"]
-result= getPrice(year, idMarca, idModelo, idSubmodelo, idEngine, engineParams, "Air Filter")
+result= getPrice(year, idMarca, idModelo, idSubmodelo, idEngine, engineParams, "Air Filter")"""
+
+
+#print(existeParte("Air Filter".lower()))

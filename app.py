@@ -319,7 +319,7 @@ def messenger_reply():
         res["submodelo"]=info[0]
         res["submodeloId"]=info[1]
         res["next"]="motor"
-        toSend="Almost done. What is the name of the engine? "
+        toSend="Almost done. What is the name of the engine? \n"
         #jejediego
         opciones=[]
         counter=1
@@ -335,6 +335,7 @@ def messenger_reply():
             temp={"number":counter, "name":engine["engineName"]}
             opciones.append(temp)
             counter+=1
+        toSend+=string
         res["engines"]=opciones
         dicInfo[user]=res
     elif(str(toSend)=="motor"):

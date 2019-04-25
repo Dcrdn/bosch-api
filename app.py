@@ -61,8 +61,8 @@ def messenger_reply2():
 
     if(str(toSend)=="saludos"):
         toSend="Hi, I can assist you to buy automobile parts. Would you like to work with our suppliers or with our partner PartsTech?"
-    with resp.message() as message:
-            message.media('https://demo.twilio.com/owl.png')
+        with resp.message() as message:
+                message.media('https://demo.twilio.com/owl.png')
     elif(str(toSend)=="decision.pt"):
         toSend="What is the branch of the car?"
         dicInfo[user]={"prove":False, "next":"marca"}
@@ -289,6 +289,7 @@ def messenger_reply():
             res["next"]="modelo.sub"
             dicInfo[user]=res
             toSend="Cool. What is the submodel of the car?"
+            #getSubModels(dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"])
     elif(str(toSend)=="modelo.sub"):
         info=existeSubmodelo(msg.lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"])
         
@@ -301,6 +302,7 @@ def messenger_reply():
             res["next"]="motor"
             dicInfo[user]=res
             toSend="Almost done. What is the name of the engine? "
+
     elif(str(toSend)=="motor"):
         info=existeMotor("the motor is 1.8L L4 vin E DOHC  ULEV".lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"], dicInfo[user]["submodeloId"])
         if(info==None):

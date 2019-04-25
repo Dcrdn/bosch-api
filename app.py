@@ -38,18 +38,18 @@ def messenger_reply2():
     parametros={"mensaje":msg}
     user=request.form.get('From')
     other = request.form.get('To')
+    other = str(other)
 
     r=requests.post("https://bosch-nlp.herokuapp.com/intent", json=parametros)
     
     toSend=r.json()["response"]["name"]
     user=str(user)
     dicInfo=js_read()
-    client.messages.create(
-            body='Great. Here you have the bank details',
-            from_=other,
-            to=user,
-            media_url='https://www.usunlocked.com/wp-content/uploads/2016/07/Bank_Transfer_Step4-750x349.png'
-        )
+    message = client.messages.create(
+        from_=other,
+        to=user,
+        media_url='https://www.usunlocked.com/wp-content/uploads/2016/07/Bank_Transfer_Step4-750x349.png',
+    )
 
     if(toSend==None):
         a=1

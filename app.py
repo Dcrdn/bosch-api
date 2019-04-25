@@ -6,7 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from twilio.twiml.messaging_response import MessagingResponse
 from twilio.rest import Client
-from information import existeMarca, existeModelo, existeSubmodelo, existeMotor, getPrice, js_read, js_save, existeParte
+from information import existeMarca, getCart, submitCart, existeModelo, existeSubmodelo, existeMotor, getPrice, js_read, js_save, existeParte
 import requests
 import sys
 import time
@@ -360,11 +360,21 @@ def messenger_reply():
     elif(str(toSend)=="checkout"):
         comprar=dicInfo[user]["cart"]
         total=0
+        #subir todo a carrito
+        #{partId, quantity}
+        lista=[]
         for element in comprar:
-            total+=int(element[2])
-            toSend="Product: " + element[1] +"   Price: " + str(element[2])
-            resp.message("{}".format(toSend))            
-        toSend="Your total is: " + str(total)
+            temp={"partId":dicInfo["partId"], "quantity":1}
+            lista.append(temp)
+            #total+=int(element[2])
+            #toSend="Product: " + element[1] +"   Price: " + str(element[2])
+            #resp.message("{}".format(toSend))
+            #aquiiiiiiiiiiii
+        sessionId=submitCart("beta_bosch", lista)
+        print("wuu tengo el session id "+ str(sessionId))
+        price=getCart(sessionId)
+        print("wuu tengo el price")
+        toSend="Your total is: " + str(price)
         resp.message("{}".format(toSend))
         toSend="Do you want to pay with whatsapp payments or via bank deposit?"
     elif(str(toSend)=="bankdeposit"):

@@ -115,6 +115,27 @@ def existeMotor(oracion, year, marcaId, modelId, submodelId):
             return [engine["engineName"], engine["engineId"], engine]
     return [None, None, None]
 
+#orders: [ storeId, parts: [ {partId: idPart, quantity: 1} ] ]
+def submitCart(storeId, lista): #partId, quantity
+    url="https://api.beta.partstech.com/punchout/cart/create"
+    parametros={"orders":["storeId": storeId, "parts": lista]}
+    print("por hace request a submit cart")
+    r=requests.post(urlGetPrice, headers=auth, json=parametros)
+    print("se pudo hacer el request a submit cart")
+    print(r.json())
+    sessionId=r.json()["sessionId"]
+    return sessionId
+
+def getCart(sessionId):
+    url="https://api.beta.partstech.com/punchout/cart/info"
+    parametros={"sessionId":sessionId}
+    print("por llamar get cart")
+    r=requests.get(url, headers=auth, params=parametros)
+    print("wuu tengo request")
+    print(r.json())
+    totalPrice=r.json()["totalPrice"]
+    return totalPrice
+
 #yearId, makeId, modelId, subModelId, engineId, engineParams: engineVinId,
 
 def getPrice(yearId, makeId, modelId, subModelId, engineId, engineParams, keyword):

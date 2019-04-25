@@ -501,17 +501,12 @@ def messenger_reply():
     elif(str(toSend)=="bankdeposit"):
         toSend = "Great. Here you have the bank details"
         resp.message("{}".format(toSend))
-        """
-        resp.message("{}".format(toSend))
         time.sleep(2)
         toSend = "Bank Account: XXXXXXXXXXXXXXXXXXXXXXX"
         resp.message("{}".format(toSend))
         time.sleep(2)
         toSend = "Reference: XXXX"
         resp.message("{}".format(toSend))
-        """
-        with resp.message() as message:
-            message.media('https://www.usunlocked.com/wp-content/uploads/2016/07/Bank_Transfer_Step4-750x349.png')
         time.sleep(2)
         toSend="Please provide us an address and name to send the product when your payment is accepted"
     elif(str(toSend)=="address"):

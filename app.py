@@ -66,7 +66,9 @@ def messenger_reply():
 
     r=requests.post("https://bosch-nlp.herokuapp.com/intent", json=parametros)
     toSend=r.json()["response"]["name"]
-    if(toSend.lower()=="no"):
+    if(toSend==None):
+        a=1
+    elif(toSend.lower()=="no"):
         toSend="Okay"
         dicInfo[user]["next"]=None
         js_save(dicInfo)

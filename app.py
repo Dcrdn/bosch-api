@@ -187,6 +187,7 @@ def messenger_reply():
             info["cart"]=data
         else:
             info["cart"]=[[dicInfo[user]["partId"],dicInfo[user]["partName"], dicInfo[user]["partPrice"]]]
+        info["next"]=None
         dicInfo[user]=info
         toSend="Do you want to buy something else or you want to do the checkout?"
     elif(str(toSend)=="buyelse"):

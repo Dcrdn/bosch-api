@@ -99,7 +99,7 @@ def messenger_reply():
             info["marcaId"]=res[1]
             info["next"]="year"
             dicInfo[user]=info
-            toSend="Great. What is the year of the car? marca: "+ res[0] +", id: "+ str(res[1])
+            toSend="Great. What is the year of the car?"
     elif(str(toSend)=="year"):
         year=msg.split()
         year=year[-1]
@@ -107,7 +107,7 @@ def messenger_reply():
         res["year"]=year
         res["next"]="modelo"
         dicInfo[user]=res
-        toSend="Okay. What is the model of the car? year: "+ year
+        toSend="Okay. What is the model of the car?"
     elif(str(toSend)=="modelo"):
         info=existeModelo(msg.lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"]) #elantra
         if(info==None):
@@ -118,7 +118,7 @@ def messenger_reply():
             res["modeloId"]=info[1]
             res["next"]="modelo.sub"
             dicInfo[user]=res
-            toSend="Cool. What is the submodel of the car? modelo: "+ info[0] + " id: " + str(info[1])
+            toSend="Cool. What is the submodel of the car?"
     elif(str(toSend)=="modelo.sub"):
         info=existeSubmodelo(msg.lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"])
         if(info==None):
@@ -129,7 +129,7 @@ def messenger_reply():
             res["submodeloId"]=info[1]
             res["next"]="motor"
             dicInfo[user]=res
-            toSend="Almost done. What is the name of the engine? sub: "+ info[0] + " id: "+ str(info[1])
+            toSend="Almost done. What is the name of the engine? "
     elif(str(toSend)=="motor"):
         info=existeMotor("the motor is 1.8L L4 vin E DOHC  ULEV".lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"], dicInfo[user]["submodeloId"])
         if(info==None):

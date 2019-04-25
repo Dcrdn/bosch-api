@@ -110,8 +110,8 @@ def existeMotor(oracion, year, marcaId, modelId, submodelId):
     result=getEngines(year, marcaId, modelId, submodelId)
     print("MOTORES")
     for engine in result:
-        print(engine["engineName"])
-        if(engine["engineName"].lower() in oracion):
+        print(engine["engineName"].lower())
+        if(engine["engineName"].lower() in oracion or engine["engineName"].lower()==oracion):
             return [engine["engineName"], engine["engineId"], engine]
     return [None, None, None]
 
@@ -134,6 +134,8 @@ def getPrice(yearId, makeId, modelId, subModelId, engineId, engineParams, keywor
     print(url)
     print(precio)
     return [idPart, brand, url, precio] #devuelve una lista de los modelos de la linea de carros
+
+#orders: [ storeId, parts: [ {partId: idPart, quantity: 1} ] ]
 
 def js_read():
    with open('temp.json') as f_in:

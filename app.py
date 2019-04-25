@@ -62,19 +62,17 @@ def messenger_reply2():
     if(str(toSend)=="saludos"):
         toSend="Hi, I can assist you to buy automobile parts. Would you like to work with our suppliers or with our partner PartsTech?"
     elif(str(toSend)=="decision.pt"):
-        toSend="Excelent. I'm going to ask you some questions about what you are looking for."
+        toSend="What is the branch of the car?"
         dicInfo[user]={"prove":False, "next":"marca"}
         resp.message("{}".format(toSend))
         time.sleep(2)
-        toSend="What is the branch of the car?"
+        toSend="Excelent. I'm going to ask you some questions about what you are looking for."
     elif(str(toSend)=="decision.prove"):
         dicInfo[user]={"prove":True, "next":"marca"}
-
-        toSend="Excelent. I'm going to ask you some questions about what you are looking for."
+        toSend="What is the branch of the car?"
         resp.message("{}".format(toSend))
         time.sleep(2)
-
-        toSend="What is the branch of the car?"
+        toSend="Excelent. I'm going to ask you some questions about what you are looking for."
     elif(str(toSend)=="marca"):
         res=existeMarca(msg.lower())
         if(res[1]==None):
@@ -117,9 +115,9 @@ def messenger_reply2():
             dicInfo[user]=res
             toSend="Almost done. What is the name of the engine? "
     elif(str(toSend)=="motor"):
-        info=existeMotor("the motor is 1.8L L4 vin E DOHC  ULEV".lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"], dicInfo[user]["submodeloId"])
+        info=existeMotor(msg.lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"], dicInfo[user]["submodeloId"])
         if(info[1]==None):
-            toSend="We didn't find that model in our database. Try with another one"            
+            toSend="We didn't find that engine in our database. Try with another one"            
         else: 
             res=dicInfo[user]
             toSend="Great! Now tell me the auto part you want to buy"

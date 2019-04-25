@@ -118,7 +118,7 @@ def existeMotor(oracion, year, marcaId, modelId, submodelId):
 
 #orders: [ storeId, parts: [ {partId: idPart, quantity: 1} ] ]
 
-def submitCart(storeId, lista, payload): #partId, quantity
+def submitCart(storeId, lista): #partId, quantity
     url="https://api.beta.partstech.com/punchout/cart/create"
     storeId=1
     parametros={"orders":[{"storeId": 1, "parts": lista}]}

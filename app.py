@@ -63,7 +63,7 @@ def messenger_reply():
     user=request.form.get('From')
 
     r=requests.post("https://bosch-nlp.herokuapp.com/intent", json=parametros)
-    
+
     toSend=r.json()["response"]["name"]
     user=str(user)
     dicInfo=js_read()
@@ -176,8 +176,8 @@ def messenger_reply():
         res["next"]=None
 
         dicInfo[user]=res
-        toSend="Do you want to buy something else or do you want send the request to our providers?"
-    elif(str(toSend)=="providers"): #diego --> pieces
+        toSend="Do you want to buy something else or do you want send the request to our Jobbers?"
+    elif(str(toSend)=="jobbers"): #diego --> pieces
         #envio a provedores, hacer algo aqui en whats
         toSend="aqui se hace algo pero pa wats juejue"
     elif(str(toSend)=="cart"):

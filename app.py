@@ -210,8 +210,12 @@ def messenger_reply():
         resp.message("{}".format(toSend))
         toSend="Do you want to pay with whatsapp payments or via bank deposit?"
     elif(str(toSend)=="bankdeposit"):
-        toSend="Great. Here you have the bank details"
-        resp.message("{}".format(toSend))
+        client.messages.create(
+            body="Great. Here you have the bank details",
+            from_=request.form.get('To'),
+            to=request.form.get('From'),
+            media_url='https://frasesparami.com/wp-content/uploads/2017/06/IMAGENES-DE-RISA-CON-FRASES.jpg'
+        )
         toSend="Please provide us an address and name to send the product when your payment is accepted"
     elif(str(toSend)=="address"):
         toSend="Perfect. We will let you know when your package it's on it's way"

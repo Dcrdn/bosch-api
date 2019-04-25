@@ -182,7 +182,15 @@ def messenger_reply2():
         else: 
             price= getPrice(dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"], dicInfo[user]["submodeloId"], dicInfo[user]["engineId"], dicInfo[user]["engine"]["engineParams"], part)
             idPart=price[0]
+            urlImage=price[2]
             price=price[3]
+
+            toSend="Your product "+ part + ":" 
+            resp.message("{}".format(toSend))
+
+            with resp.message() as message:
+                message.media(urlImage)
+                    
             res=dicInfo[user]
             res["partId"]=idPart
             res["partPrice"]=price
@@ -192,9 +200,9 @@ def messenger_reply2():
                 toSend="Tell me how many pieces do you want"
                 res["next"]="pieces"
             else:    
-                toSend="The "+ part +" costs: "+ str(price) 
-                resp.message("{}".format(toSend))
-                time.sleep(2)
+                #toSend="The "+ part +" costs: "+ str(price) 
+                #resp.message("{}".format(toSend))
+                #time.sleep(2)
                 toSend="Do you want to add it to your cart?"
                 res["next"]="cart"
             dicInfo[user]=res
@@ -250,6 +258,7 @@ def messenger_reply2():
         toSend="Do you want to pay with whatsapp payments or via bank deposit?"
     elif(str(toSend)=="bankdeposit"):
         toSend = "Great. Here you have the bank details"
+        resp.message("{}".format(toSend))
         """
         resp.message("{}".format(toSend))
         time.sleep(2)
@@ -418,6 +427,9 @@ def messenger_reply():
             price= getPrice(dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"], dicInfo[user]["submodeloId"], dicInfo[user]["engineId"], dicInfo[user]["engine"]["engineParams"], part)
             idPart=price[0]
             price=price[3]
+            urlImage=price[2]
+
+
             res=dicInfo[user]
             res["partId"]=idPart
             res["partPrice"]=price

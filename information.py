@@ -139,7 +139,7 @@ def getCart(sessionId):
     r=requests.post(url, headers=auth, json=parametros)
     print("wuu tengo request")
     print(r.json())
-    totalPrice=r.json()["totalPrice"]
+    totalPrice=r.json()["order"][0]["totalPrice"]
     return totalPrice
 
 #yearId, makeId, modelId, subModelId, engineId, engineParams: engineVinId,
@@ -173,6 +173,7 @@ def js_save(dictionary):
         json.dump(dictionary, fp)
 
 #sonata
+
 """
 data=existeMarca("Hyundai".lower())
 data2=existeModelo("Elantra".lower(), 2016, data[1])
@@ -186,7 +187,6 @@ idSubmodelo=data3[1]
 idEngine=data4[1]
 engineParams=data4[2]["engineParams"]
 result= getPrice(year, idMarca, idModelo, idSubmodelo, idEngine, engineParams, "Air Filter")
-"""
 
 
 #print(existeParte("Air Filter".lower()))
@@ -210,7 +210,7 @@ payload={
 }
 
 #submitCart(1, lista, payload)
-"""
+
 1040
 
 

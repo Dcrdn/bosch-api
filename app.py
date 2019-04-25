@@ -168,7 +168,7 @@ def messenger_reply():
             dicInfo[user]=res
     elif(str(toSend)=="pieces"): #diego --> pieces
         piezas=msg.split()
-        piezas=oracion[-2]
+        piezas=piezas[-1]
         res=dicInfo[user]
         res["totalPieces"]=piezas
         res["next"]=None

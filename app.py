@@ -307,8 +307,11 @@ def messenger_reply():
             if(str(element["number"])==str(msg)):
                 modelo=element["name"]
                 break
-        info=existeSubmodelo(modelo, dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"])
-        
+        print("modelo")
+        print(modelo)
+
+        info=existeSubmodelo(modelo.lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"])
+        print(info)
         #if(info==None):
         #    toSend="We didn't find that submodel in our database. Try with another one"            
         #else: 

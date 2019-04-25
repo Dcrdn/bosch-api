@@ -45,13 +45,11 @@ def messenger_reply2():
     toSend=r.json()["response"]["name"]
     user=str(user)
     dicInfo=js_read()
-    message = client.messages.create(
-        body='Here',
-        from_=request.form.get('To'),
+    client.messages.create(
         to=request.form.get('From'),
-        media_url='https://www.usunlocked.com/wp-content/uploads/2016/07/Bank_Transfer_Step4-750x349.png',
-    )
-    print(message)
+        from_=request.form.get('To'),
+        body="Hi Joe! Please find your boarding pass attached. Flight OA2345 departs at 11 pm PST.",
+        media_url="https://emerald-coral-3661.twil.io/assets/2-OwlAir-Upcoming-Trip.PNG")
 
     if(toSend==None):
         a=1

@@ -189,7 +189,7 @@ def messenger_reply2():
                               body='{}'.format(msg),
                               from_=request.form.get('To'),
                               to=user,
-                              media_url='https://frasesparami.com/wp-content/uploads/2017/06/IMAGENES-DE-RISA-CON-FRASES.jpg'
+                              media_url='https://www.bullguard.com/getmedia/b3d3d605-2dd5-4f69-98e9-c6f20b6a6b81/bank_transfer2'
                           )
         toSend="Please provide us an address and name to send the product when your payment is accepted"
     elif(str(toSend)=="address"):

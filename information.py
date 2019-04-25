@@ -93,6 +93,7 @@ def existeMarca(oracion):
 def existeModelo(oracion, year, marcaId): #make id que recibi de marca    
     result=getModels(year, marcaId)
     for modelo in result:
+        print(modelo["modelName"])
         if(modelo["modelName"].lower() in oracion):
             return [modelo["modelName"], modelo["modelId"]]
     return [None, None]

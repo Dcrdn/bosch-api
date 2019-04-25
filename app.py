@@ -77,7 +77,7 @@ def messenger_reply2():
         toSend="What is the branch of the car?"
     elif(str(toSend)=="marca"):
         res=existeMarca(msg.lower())
-        if(res==None):
+        if(res[1]==None):
             toSend="We didn't find that branch in our database. Try with another one"            
         else:            
             info=dicInfo[user]
@@ -96,7 +96,7 @@ def messenger_reply2():
         toSend="Okay. What is the model of the car?"
     elif(str(toSend)=="modelo"):
         info=existeModelo(msg.lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"]) #elantra
-        if(info==None):
+        if(info[1]==None):
             toSend="We didn't find that model in our database. Try with another one"            
         else: 
             res=dicInfo[user]
@@ -107,7 +107,7 @@ def messenger_reply2():
             toSend="Cool. What is the submodel of the car?"
     elif(str(toSend)=="modelo.sub"):
         info=existeSubmodelo(msg.lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"])
-        if(info==None):
+        if(info[1]==None):
             toSend="We didn't find that submodel in our database. Try with another one"            
         else: 
             res=dicInfo[user]
@@ -118,7 +118,7 @@ def messenger_reply2():
             toSend="Almost done. What is the name of the engine? "
     elif(str(toSend)=="motor"):
         info=existeMotor("the motor is 1.8L L4 vin E DOHC  ULEV".lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"], dicInfo[user]["submodeloId"])
-        if(info==None):
+        if(info[1]==None):
             toSend="We didn't find that model in our database. Try with another one"            
         else: 
             res=dicInfo[user]

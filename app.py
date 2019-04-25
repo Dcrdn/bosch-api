@@ -321,7 +321,7 @@ def messenger_reply():
         opciones=[]
         counter=1
         string="Options \n"
-        result=getEngines(dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"], dicInfo[user]["submodeloId"])
+        result=getEngines(dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"], info[1])
         print("result")
         print(result)
         for engine in result:

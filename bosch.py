@@ -27,7 +27,33 @@ urlSubmodel="https://api.beta.partstech.com/taxonomy/vehicles/submodels"  #estos
 urlEngine="https://api.beta.partstech.com/taxonomy/vehicles/engines" #estos son los engines
 #regresa: engineId, engineName, engineParams (objeto)
 
+urlParts="https://api.beta.partstech.com/taxonomy/part-types"
 
+def js_read():
+   with open('data/categoria.json') as f_in:
+       return(json.load(f_in))
+
+def js_save(dictionary):
+    with open('data/partes.json', 'w') as fp:
+        json.dump(dictionary, fp)
+
+def getPartes(categoria):
+    parametros={"category":categoria}
+    r=requests.get(urlParts, headers=auth, params=parametros)
+    return r.json() #devuelve una lista de los modelos de la linea de carros
+    #if len()!=0 si tengo algo chido
+    
+
+file=js_read()
+lista=[]
+for element in file:
+    print("--")
+    id=element["categoryId"]
+    partes=getPartes(id)
+    lista+=partes
+js_save(lista)
+
+"""
 def getModels(year, marcaId):
     parametros={"year":year,"make":marcaId}
     r=requests.get(urlModel, headers=auth, params=parametros)
@@ -92,7 +118,7 @@ def crear():
     return True
 
 
-"""
+
 dic={
     marca:{
         year{
@@ -120,8 +146,9 @@ dic={
         }
     }
 }
-"""
+
 res=crear()
 print(res)
+"""
 
 #print(getModels(1990,21)) #una lista de los modelos de cada linea de carros

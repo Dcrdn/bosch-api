@@ -6,7 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from twilio.twiml.messaging_response import MessagingResponse
 from twilio.rest import Client
-from information import existeMarca, existeModelo, existeSubmodelo, existeMotor, getPrice, js_read, js_save
+from information import existeMarca, existeModelo, existeSubmodelo, existeMotor, getPrice, js_read, js_save, existeParte
 import requests
 import sys
 reload(sys)
@@ -108,19 +108,15 @@ def messenger_reply():
         dicInfo[user]=res
         toSend="Cool. What is the submodel of the car? modelo: "+ info[0] + " id: " + str(info[1])
     elif(str(toSend)=="modelo.sub"):
-        submodelo=msg.split()
-        submodelo=submodelo[-1]
-        info=existeSubmodelo(submodelo.lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"])
+        info=existeSubmodelo(msg.lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"])
         res=dicInfo[user]
-        res["submodelo"]=submodelo
+        res["submodelo"]=info[0]
         res["submodeloId"]=info[1]
         res["next"]="motor"
         dicInfo[user]=res
-        toSend="Almost done. What is the name of the engine? sub: "+ submodelo + " id: "+ str(info[1])
+        toSend="Almost done. What is the name of the engine? sub: "+ info[0] + " id: "+ str(info[1])
     elif(str(toSend)=="motor"):
-        engine=msg.split()
-        engine=engine[-1]
-        info=existeMotor("1.8L L4 vin E DOHC  ULEV".lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"], dicInfo[user]["submodeloId"])
+        info=existeMotor("the motor is 1.8L L4 vin E DOHC  ULEV".lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"], dicInfo[user]["submodeloId"])
         res=dicInfo[user]
         toSend="Great! Now tell me the auto part you want to buy"
         res["engineName"]=engine
@@ -130,10 +126,13 @@ def messenger_reply():
         dicInfo[user]=res
     elif(str(toSend)=="part"): #the part i want is the -..-.-.
         #arreglar este para que sirva con cualquiera
+        """
         oracion=msg.split()
         index=oracion.index("is")
         message=oracion[index+2:]
         part=' '.join(message)
+        """
+        part=existeParte(msg.lower())
         price= getPrice(dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"], dicInfo[user]["submodeloId"], dicInfo[user]["engineId"], dicInfo[user]["engine"]["engineParams"], part)
         idPart=price[0]
         price=price[3]

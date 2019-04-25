@@ -71,6 +71,18 @@ def js_r():
    with open("data/response.json") as f_in:
        return(json.load(f_in))
 
+def js_r2():
+   with open("data/partes.json") as f_in:
+       return(json.load(f_in))
+
+def existeParte(oracion):
+    file=js_r()
+    for parte in file:
+        print("itera")
+        if(parte["partTypeName"].lower() in oracion):
+            return parte["partTypeName"]
+    return None
+
 def existeMarca(oracion):
     oracion=oracion.split()
     file=js_r()
@@ -86,24 +98,19 @@ def existeModelo(oracion, year, marcaId): #make id que recibi de marca
             return [modelo["modelName"], modelo["modelId"]]
     return [None, None]
 
-def existeSubmodelo(subModeloName, year, marcaId, modelId):
+def existeSubmodelo(oracion, year, marcaId, modelId):
     result=getSubModels(year, marcaId, modelId)
     for submodelo in result:
-        if(submodelo["submodelName"].lower()==subModeloName):
-            print("found")
-            print(submodelo["submodelName"])
+        if(submodelo["submodelName"].lower() in oracion):
             return [submodelo["submodelName"], submodelo["submodelId"]]
     return [None, None]
 
-def existeMotor(motorName, year, marcaId, modelId, submodelId):
+def existeMotor(oracion, year, marcaId, modelId, submodelId):
     result=getEngines(year, marcaId, modelId, submodelId)
-    print(result)
     for engine in result:
-        if(engine["engineName"].lower()==motorName):
-            print("found")
-            print(engine["engineName"])
+        if(engine["engineName"].lower() in oracion):
             return [engine["engineName"], engine["engineId"], engine]
-    return [None, None]
+    return [None, None, None]
 
 #yearId, makeId, modelId, subModelId, engineId, engineParams: engineVinId,
 

@@ -6,7 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from twilio.twiml.messaging_response import MessagingResponse
 from twilio.rest import Client
-from information import existeMarca, existeModelo, existeSubmodelo, existeMotor, getPrice, js_read, js_save, existeParte, getCart, submitCart, getSubModels
+from information import existeMarca, getEngines, existeModelo, existeSubmodelo, existeMotor, getPrice, js_read, js_save, existeParte, getCart, submitCart, getSubModels
 import requests
 import sys
 import time
@@ -316,11 +316,28 @@ def messenger_reply():
         res["submodelo"]=info[0]
         res["submodeloId"]=info[1]
         res["next"]="motor"
-        dicInfo[user]=res
         toSend="Almost done. What is the name of the engine? "
-
+        #jejediego
+        opciones=[]
+        counter=1
+        string="Options \n"
+        result=getEngines(dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"], dicInfo[user]["submodeloId"])
+        for engine in result:
+            string+=str(counter)+ "-  "+engine["engineName"] +" \n"
+            temp={"number":counter, "name":engine["engineName"]}
+            opciones.append(temp)
+            counter+=1
+        res["engines"]=opciones
+        dicInfo[user]=res
     elif(str(toSend)=="motor"):
-        info=existeMotor("the motor is 1.8L L4 vin E DOHC  ULEV".lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"], dicInfo[user]["submodeloId"])
+        modelossub=dicInfo[user]["engines"]
+        modelo=""
+        for element in modelossub:
+            if(str(element["number"])==str(msg)):
+                modelo=element["name"]
+                break
+        info=existeMotor(modelo, dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"], dicInfo[user]["submodeloId"])
+        
         if(info==None):
             toSend="We didn't find that model in our database. Try with another one"            
         else: 

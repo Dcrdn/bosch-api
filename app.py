@@ -50,6 +50,7 @@ def messenger_reply2():
         to=user,
         media_url='https://www.usunlocked.com/wp-content/uploads/2016/07/Bank_Transfer_Step4-750x349.png',
     )
+    print(message)
 
     if(toSend==None):
         a=1

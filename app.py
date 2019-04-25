@@ -66,6 +66,12 @@ def messenger_reply():
 
     r=requests.post("https://bosch-nlp.herokuapp.com/intent", json=parametros)
     toSend=r.json()["response"]["name"]
+    if(toSend.lower()=="no"):
+        toSend="Okay"
+        dicInfo[user]["next"]=None
+        js_save(dicInfo)
+        resp.message("{}".format(toSend))
+        return str(resp)   
     if(user in dicInfo):
         if(dicInfo[user]["next"]!=None):
             toSend=dicInfo[user]["next"]
@@ -85,12 +91,15 @@ def messenger_reply():
         toSend="What is the branch of the car?"
     elif(str(toSend)=="marca"):
         res=existeMarca(msg.lower())
-        info=dicInfo[user]
-        info["marca"]=res[0]
-        info["marcaId"]=res[1]
-        info["next"]="year"
-        dicInfo[user]=info
-        toSend="Great. What is the year of the car? marca: "+ res[0] +", id: "+ str(res[1])
+        if(res==None):
+            toSend="We didn't find that branch in our database. Try with another one"            
+        else:            
+            info=dicInfo[user]
+            info["marca"]=res[0]
+            info["marcaId"]=res[1]
+            info["next"]="year"
+            dicInfo[user]=info
+            toSend="Great. What is the year of the car? marca: "+ res[0] +", id: "+ str(res[1])
     elif(str(toSend)=="year"):
         year=msg.split()
         year=year[-1]
@@ -101,59 +110,60 @@ def messenger_reply():
         toSend="Okay. What is the model of the car? year: "+ year
     elif(str(toSend)=="modelo"):
         info=existeModelo(msg.lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"]) #elantra
-        res=dicInfo[user]
-        res["modelo"]=info[0]
-        res["modeloId"]=info[1]
-        res["next"]="modelo.sub"
-        dicInfo[user]=res
-        toSend="Cool. What is the submodel of the car? modelo: "+ info[0] + " id: " + str(info[1])
+        if(info==None):
+            toSend="We didn't find that model in our database. Try with another one"            
+        else: 
+            res=dicInfo[user]
+            res["modelo"]=info[0]
+            res["modeloId"]=info[1]
+            res["next"]="modelo.sub"
+            dicInfo[user]=res
+            toSend="Cool. What is the submodel of the car? modelo: "+ info[0] + " id: " + str(info[1])
     elif(str(toSend)=="modelo.sub"):
         info=existeSubmodelo(msg.lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"])
-        res=dicInfo[user]
-        res["submodelo"]=info[0]
-        res["submodeloId"]=info[1]
-        res["next"]="motor"
-        dicInfo[user]=res
-        toSend="Almost done. What is the name of the engine? sub: "+ info[0] + " id: "+ str(info[1])
+        if(info==None):
+            toSend="We didn't find that submodel in our database. Try with another one"            
+        else: 
+            res=dicInfo[user]
+            res["submodelo"]=info[0]
+            res["submodeloId"]=info[1]
+            res["next"]="motor"
+            dicInfo[user]=res
+            toSend="Almost done. What is the name of the engine? sub: "+ info[0] + " id: "+ str(info[1])
     elif(str(toSend)=="motor"):
         info=existeMotor("the motor is 1.8L L4 vin E DOHC  ULEV".lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"], dicInfo[user]["submodeloId"])
-        res=dicInfo[user]
-        toSend="Great! Now tell me the auto part you want to buy"
-        res["engineName"]=info[0]
-        res["engineId"]=info[1]
-        res["engine"]=info[2]
-        res["next"]="part"
-        dicInfo[user]=res
+        if(info==None):
+            toSend="We didn't find that model in our database. Try with another one"            
+        else: 
+            res=dicInfo[user]
+            toSend="Great! Now tell me the auto part you want to buy"
+            res["engineName"]=info[0]
+            res["engineId"]=info[1]
+            res["engine"]=info[2]
+            res["next"]="part"
+            dicInfo[user]=res
     elif(str(toSend)=="part"): #the part i want is the -..-.-.
-        #arreglar este para que sirva con cualquiera
-        """
-        oracion=msg.split()
-        index=oracion.index("is")
-        message=oracion[index+2:]
-        part=' '.join(message)
-        """
         part=existeParte(msg.lower())
-        price= getPrice(dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"], dicInfo[user]["submodeloId"], dicInfo[user]["engineId"], dicInfo[user]["engine"]["engineParams"], part)
-        idPart=price[0]
-        price=price[3]
-        
-        res=dicInfo[user]
-        res["partId"]=idPart
-        res["partPrice"]=price
-        res["partName"]=part
-
-        prove=dicInfo[user]["prove"]
-        if(prove):
-            toSend="Tell me how many pieces do you want"
-            res["next"]="pieces"
-        else:    
-            toSend="The "+ part +" costs: "+ str(price) 
-            resp.message("{}".format(toSend))
-            toSend="Do you want to add it to your cart?"
-            res["next"]="cart"
-
-        dicInfo[user]=res
-
+        if(part==None):
+            toSend="We didn't find that part in our database. Try with another one"            
+        else: 
+            price= getPrice(dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"], dicInfo[user]["submodeloId"], dicInfo[user]["engineId"], dicInfo[user]["engine"]["engineParams"], part)
+            idPart=price[0]
+            price=price[3]
+            res=dicInfo[user]
+            res["partId"]=idPart
+            res["partPrice"]=price
+            res["partName"]=part
+            prove=dicInfo[user]["prove"]
+            if(prove):
+                toSend="Tell me how many pieces do you want"
+                res["next"]="pieces"
+            else:    
+                toSend="The "+ part +" costs: "+ str(price) 
+                resp.message("{}".format(toSend))
+                toSend="Do you want to add it to your cart?"
+                res["next"]="cart"
+            dicInfo[user]=res
     elif(str(toSend)=="pieces"): #diego --> pieces
         piezas=msg.split()
         piezas=oracion[-2]

@@ -119,7 +119,7 @@ def messenger_reply():
         info=existeMotor("the motor is 1.8L L4 vin E DOHC  ULEV".lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"], dicInfo[user]["submodeloId"])
         res=dicInfo[user]
         toSend="Great! Now tell me the auto part you want to buy"
-        res["engineName"]=engine
+        res["engineName"]=info[0]
         res["engineId"]=info[1]
         res["engine"]=info[2]
         res["next"]="part"

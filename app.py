@@ -186,16 +186,17 @@ def messenger_reply2():
         #subir todo a carrito
         #{partId, quantity}
         lista=[]
-        print("/////")
-        print(dicInfo)
         for element in comprar:
+            total+=int(element[2])
+            toSend="Product: " + element[1] +"   Price: " + str(element[2])
+            resp.message("{}".format(toSend))
             temp={"partId":dicInfo[user]["partId"], "quantity":1}
             lista.append(temp)
-        sessionId=submitCart("beta_bosch", lista)
-        print("wuu tengo el session id "+ str(sessionId))
-        price=getCart(sessionId)
-        print("wuu tengo el price")
-        toSend="Your total is: " + str(price)
+        #sessionId=submitCart("beta_bosch", lista)
+        #print("wuu tengo el session id "+ str(sessionId))
+        #price=getCart(sessionId)
+        #print("wuu tengo el price")
+        toSend="Your total is: " + str(total)
         resp.message("{}".format(toSend))
         toSend="Do you want to pay with whatsapp payments or via bank deposit?"
     elif(str(toSend)=="bankdeposit"):
@@ -369,13 +370,16 @@ def messenger_reply():
         #{partId, quantity}
         lista=[]
         for element in comprar:
+            total+=int(element[2])
+            toSend="Product: " + element[1] +"   Price: " + str(element[2])
+            resp.message("{}".format(toSend))
             temp={"partId":dicInfo[user]["partId"], "quantity":1}
             lista.append(temp)
-        sessionId=submitCart("beta_bosch", lista)
-        print("wuu tengo el session id "+ str(sessionId))
-        price=getCart(sessionId)
-        print("wuu tengo el price")
-        toSend="Your total is: " + str(price)
+        #sessionId=submitCart("beta_bosch", lista)
+        #print("wuu tengo el session id "+ str(sessionId))
+        #price=getCart(sessionId)
+        #print("wuu tengo el price")
+        toSend="Your total is: " + str(total)
         resp.message("{}".format(toSend))
         toSend="Do you want to pay with messenger payments or via bank deposit?"
     elif(str(toSend)=="bankdeposit"):

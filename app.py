@@ -61,6 +61,8 @@ def messenger_reply2():
 
     if(str(toSend)=="saludos"):
         toSend="Hi, I can assist you to buy automobile parts. Would you like to work with our suppliers or with our partner PartsTech?"
+    with resp.message() as message:
+            message.media('https://demo.twilio.com/owl.png')
     elif(str(toSend)=="decision.pt"):
         toSend="What is the branch of the car?"
         dicInfo[user]={"prove":False, "next":"marca"}
@@ -186,16 +188,17 @@ def messenger_reply2():
         #subir todo a carrito
         #{partId, quantity}
         lista=[]
-        print("/////")
-        print(dicInfo)
         for element in comprar:
+            total+=int(element[2])
+            toSend="Product: " + element[1] +"   Price: " + str(element[2])
+            resp.message("{}".format(toSend))
             temp={"partId":dicInfo[user]["partId"], "quantity":1}
             lista.append(temp)
         sessionId=submitCart("beta_bosch", lista)
         print("wuu tengo el session id "+ str(sessionId))
         price=getCart(sessionId)
         print("wuu tengo el price")
-        toSend="Your total is: " + str(price)
+        toSend="Your total is: " + str(total)
         resp.message("{}".format(toSend))
         toSend="Do you want to pay with whatsapp payments or via bank deposit?"
     elif(str(toSend)=="bankdeposit"):
@@ -288,6 +291,7 @@ def messenger_reply():
             toSend="Cool. What is the submodel of the car?"
     elif(str(toSend)=="modelo.sub"):
         info=existeSubmodelo(msg.lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"])
+        
         if(info==None):
             toSend="We didn't find that submodel in our database. Try with another one"            
         else: 

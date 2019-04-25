@@ -301,17 +301,23 @@ def messenger_reply():
             res["submodelos"]=opciones
             dicInfo[user]=res
     elif(str(toSend)=="modelo.sub"):
-        info=existeSubmodelo(msg.lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"])
+        modelossub=dicInfo[user]["submodelos"]
+        modelo=""
+        for element in modelossub:
+            if(str(element["number"])==str(msg)):
+                modelo=element["submodelName"]
+                break
+        info=existeSubmodelo(modelo, dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"])
         
-        if(info==None):
-            toSend="We didn't find that submodel in our database. Try with another one"            
-        else: 
-            res=dicInfo[user]
-            res["submodelo"]=info[0]
-            res["submodeloId"]=info[1]
-            res["next"]="motor"
-            dicInfo[user]=res
-            toSend="Almost done. What is the name of the engine? "
+        #if(info==None):
+        #    toSend="We didn't find that submodel in our database. Try with another one"            
+        #else: 
+        res=dicInfo[user]
+        res["submodelo"]=info[0]
+        res["submodeloId"]=info[1]
+        res["next"]="motor"
+        dicInfo[user]=res
+        toSend="Almost done. What is the name of the engine? "
 
     elif(str(toSend)=="motor"):
         info=existeMotor("the motor is 1.8L L4 vin E DOHC  ULEV".lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"], dicInfo[user]["submodeloId"])

@@ -6,7 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from twilio.twiml.messaging_response import MessagingResponse
 from twilio.rest import Client
-from information import existeMarca, existeModelo, existeSubmodelo, existeMotor, getPrice, js_read, js_save, existeParte, getCart, submitCart
+from information import existeMarca, existeModelo, existeSubmodelo, existeMotor, getPrice, js_read, js_save, existeParte, getCart, submitCart, getSubModels
 import requests
 import sys
 import time
@@ -61,8 +61,8 @@ def messenger_reply2():
 
     if(str(toSend)=="saludos"):
         toSend="Hi, I can assist you to buy automobile parts. Would you like to work with our suppliers or with our partner PartsTech?"
-        with resp.message() as message:
-                message.media('https://demo.twilio.com/owl.png')
+        #with resp.message() as message:
+        #        message.media('https://demo.twilio.com/owl.png')
     elif(str(toSend)=="decision.pt"):
         toSend="What is the branch of the car?"
         dicInfo[user]={"prove":False, "next":"marca"}
@@ -282,14 +282,24 @@ def messenger_reply():
         info=existeModelo(msg.lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"]) #elantra
         if(info==None):
             toSend="We didn't find that model in our database. Try with another one"            
-        else: 
+        else:  #modified this
             res=dicInfo[user]
             res["modelo"]=info[0]
             res["modeloId"]=info[1]
             res["next"]="modelo.sub"
+            toSend="Cool. What is the submodel of the car?\n"
+            submodelos=getSubModels(dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"])
+            opciones=[]
+            counter=1
+            string="Options \n"
+            for submodelo in submodelos:
+                string+=str(counter)+ "-  "+submodelo["submodelName"] +" \n"
+                temp={"number":counter, "name":submodelo["submodelName"]}
+                opciones.append(temp)
+                counter+=1
+            toSend+=string
+            res["submodelos"]=opciones
             dicInfo[user]=res
-            toSend="Cool. What is the submodel of the car?"
-            #getSubModels(dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"])
     elif(str(toSend)=="modelo.sub"):
         info=existeSubmodelo(msg.lower(), dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"])
         

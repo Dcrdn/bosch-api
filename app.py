@@ -61,8 +61,9 @@ def messenger_reply2():
 
     if(str(toSend)=="saludos"):
         toSend="Hi, I can assist you to buy automobile parts. Would you like to work with our suppliers or with our partner PartsTech?"
-        resp.media('https://demo.twilio.com/owl.png')
-        
+        print(resp)
+        print("---")
+        resp.mediaurl('https://demo.twilio.com/owl.png')
     elif(str(toSend)=="decision.pt"):
         toSend="What is the branch of the car?"
         dicInfo[user]={"prove":False, "next":"marca"}

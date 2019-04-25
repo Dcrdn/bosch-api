@@ -68,7 +68,7 @@ def messenger_reply():
     toSend=r.json()["response"]["name"]
     if(toSend==None):
         a=1
-    elif(toSend.lower()=="no"):
+    elif(msg.lower()=="no" or msg=="bye"):
         toSend="Okay"
         dicInfo[user]["next"]=None
         js_save(dicInfo)

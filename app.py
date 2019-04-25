@@ -193,12 +193,12 @@ def messenger_reply2():
         time.sleep(2)
         toSend="Do you want to pay with whatsapp payments or via bank deposit?"
     elif(str(toSend)=="bankdeposit"):
-        message = client.messages.create(
-                              body='Great. Here you have the bank details',
-                              from_=request.form.get('To'),
-                              to=user,
-                              media_url='https://granitestateartsmarket.com/wp-content/uploads/2018/02/awesome-collection-of-letters-bank-76-images-7-bank-reference-letter-templates-free-also-bank-reference-letter-hsbc-of-bank-reference-letter-hsbc.jpg'
-                          )
+        client.messages.create(
+            body='Great. Here you have the bank details',
+            from_=request.form.get('To'),
+            to=user,
+            media_url='https://www.usunlocked.com/wp-content/uploads/2016/07/Bank_Transfer_Step4-750x349.png'
+        )
         toSend="Please provide us an address and name to send the product when your payment is accepted"
     elif(str(toSend)=="address"):
         toSend="Perfect. We will let you know when your package it's on it's way"

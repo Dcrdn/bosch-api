@@ -305,7 +305,7 @@ def messenger_reply():
         modelo=""
         for element in modelossub:
             if(str(element["number"])==str(msg)):
-                modelo=element["submodelName"]
+                modelo=element["name"]
                 break
         info=existeSubmodelo(modelo, dicInfo[user]["year"], dicInfo[user]["marcaId"], dicInfo[user]["modeloId"])
         

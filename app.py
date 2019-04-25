@@ -245,7 +245,7 @@ def messenger_reply2():
         lista=[]
         for element in comprar:
             total+=int(element[2])
-            toSend="Product: " + element[1] +"   Price: " + str(element[2])
+            toSend="Product: " + element[1] +"   Price: $"
             resp.message("{}".format(toSend))
             temp={"partId":dicInfo[user]["partId"], "quantity":1}
             lista.append(temp)
@@ -253,7 +253,7 @@ def messenger_reply2():
         print("wuu tengo el session id "+ str(sessionId))
         price=getCart(sessionId)
         print("wuu tengo el price")
-        toSend="Your total is: " + str(total)
+        toSend="Your total is: " + str("$")
         resp.message("{}".format(toSend))
         toSend="Do you want to pay with whatsapp payments or via bank deposit?"
     elif(str(toSend)=="bankdeposit"):
@@ -470,7 +470,7 @@ def messenger_reply():
         dicInfo[user]=info
         print("before checkout")
         print(dicInfo)
-        
+
         toSend="Do you want to buy something else or you want to do the checkout?"
     elif(str(toSend)=="buyelse"):
         toSend="Is it for the same car?"
@@ -487,7 +487,7 @@ def messenger_reply():
         lista=[]
         for element in comprar:
             total+=int(element[2])
-            toSend="Product: " + element[1] +"   Price: " + str(element[2])
+            toSend="Product: " + element[1] +"   Price: " + str("$")
             resp.message("{}".format(toSend))
             temp={"partId":dicInfo[user]["partId"], "quantity":1}
             lista.append(temp)
@@ -495,11 +495,13 @@ def messenger_reply():
         print("wuu tengo el session id "+ str(sessionId))
         price=getCart(sessionId)
         print("wuu tengo el price")
-        toSend="Your total is: " + str(total)
+        toSend="Your total is: " + str("$")
         resp.message("{}".format(toSend))
         toSend="Do you want to pay with messenger payments or via bank deposit?"
     elif(str(toSend)=="bankdeposit"):
         toSend = "Great. Here you have the bank details"
+        resp.message("{}".format(toSend))
+        """
         resp.message("{}".format(toSend))
         time.sleep(2)
         toSend = "Bank Account: XXXXXXXXXXXXXXXXXXXXXXX"
@@ -507,6 +509,9 @@ def messenger_reply():
         time.sleep(2)
         toSend = "Reference: XXXX"
         resp.message("{}".format(toSend))
+        """
+        with resp.message() as message:
+            message.media('https://www.usunlocked.com/wp-content/uploads/2016/07/Bank_Transfer_Step4-750x349.png')
         time.sleep(2)
         toSend="Please provide us an address and name to send the product when your payment is accepted"
     elif(str(toSend)=="address"):

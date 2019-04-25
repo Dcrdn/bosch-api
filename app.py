@@ -186,6 +186,8 @@ def messenger_reply2():
         #subir todo a carrito
         #{partId, quantity}
         lista=[]
+        print("/////")
+        print(dicInfo)
         for element in comprar:
             temp={"partId":dicInfo["partId"], "quantity":1}
             lista.append(temp)

@@ -47,10 +47,9 @@ def wazza():
     resp = MessagingResponse()
     parametros={"mensaje":msg}
     dic=js_read2()
-    if("siguiente" in dic):
-        siguiente=dic["siguiente"]
-    else:
+    if("siguiente" not in dic):
         dic["siguiente"]="saludo"
+    siguiente=dic["siguiente"]
     if(siguiente=="saludo"):
         toSend="Hola! ¿En que te puedo ayudar?"
         dic["siguiente"]="conseguir_datos"

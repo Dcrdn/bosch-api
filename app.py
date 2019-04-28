@@ -47,6 +47,10 @@ def wazza():
     resp = MessagingResponse()
     parametros={"mensaje":msg}
     dic=js_read2()
+    print("dicc")
+    print(dic)
+    print("---")
+
     if("siguiente" not in dic):
         dic["siguiente"]="saludo"
     siguiente=dic["siguiente"]
@@ -86,6 +90,7 @@ def wazza():
         resp.message("{}".format(toSend))
         toSend=json.dumps(dic)
     js_save2(dic)
+    print("saved")
     return str(resp)
 
 @app.route("/sms2", methods=['POST'])

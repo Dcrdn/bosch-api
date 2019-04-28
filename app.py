@@ -51,7 +51,7 @@ def wazza():
     else:
         dic["siguiente"]="saludo"
     if(siguiente=="saludo"):
-        toSend="Hola! ¿En qué te puedo ayudar?"
+        toSend="Hola! ¿En que te puedo ayudar?"
         dic["siguiente"]="conseguir_datos"
     elif(siguiente=="conseguir_datos"):
         toSend="Claro, solo tienes que contestar unas preguntas"

@@ -19,6 +19,7 @@ CORS(app)
 app.config.from_object(os.environ['APP_SETTINGS'])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+
 account_sid = 'ACa9513b791536c7a97c306e8f9b6c9a79'
 auth_token = '07c24096e11336cd33017101119f72e0'
 account_sid2 = 'AC01310a6100555a897c5e4cf36f4bc601'
@@ -30,6 +31,14 @@ client2 = Client(account_sid2, auth_token2)
 @app.route("/")
 def hello():
     return "API of the team BeMyGuide at Bosch Hackathon TalentLand 2019"
+
+@app.route("/palomino", methods=['POST','GET'])
+def palomitas():
+    valor=request.args
+    print("sirvee")
+    print(valor)
+    return "jeje"
+
 
 @app.route("/sms", methods=['POST'])
 def messenger_reply2():

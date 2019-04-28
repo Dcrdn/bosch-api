@@ -58,9 +58,64 @@ def wazza():
         toSend="Hola! ¿En que te puedo ayudar?"
         dic["siguiente"]="conseguir_datos"
     elif(siguiente=="conseguir_datos"):
-        toSend="Claro, solo tienes que contestar unas preguntas"
-        resp.message("{}".format(toSend))
         toSend="¿Cual es el nombre de tu empresa?"
+        resp.message("{}".format(toSend))
+        toSend="Claro, solo tienes que contestar unas preguntas"
+        dic["siguiente"]="nombreEmpresa"
+    elif(siguiente=="nombreEmpresa"):
+        dic["empresa"]=msg
+        toSend="Okay. ¿Cuantos puntos de buro tiene?"
+        dic["siguiente"]="puntosBuro"
+    elif(siguiente=="puntosBuro"):
+        dic["puntosBuro"]=msg
+        toSend="Bien. ¿Cuanto spuntos del SAT tiene?"
+        dic["siguiente"]="puntosSat"
+    elif(siguiente=="puntosSat"):
+        dic["puntosSat"]=msg
+        toSend="Excelete. ¿Cual es tu ingreso mensual?"
+        dic["siguiente"]="ingresoMensual"
+    elif(siguiente=="ingresoMensual"):
+        dic["ingresoMensual"]=msg
+        toSend="¿Cual es el monto deseado?"
+        dic["siguiente"]="montoDeseado"
+    elif(siguiente=="montoDeseado"):
+        dic["montoDeseado"]=msg
+        toSend="Y finalmente, ¿A que plazo te gustaria tu credito?"
+        dic["siguiente"]="plazoDeseado"
+    elif(siguiente=="plazoDeseado"):
+        dic["plazoDeseado"]=msg
+        toSend="Analizando datos..."
+        resp.message("{}".format(toSend))
+        toSend="ANALIZADO wii..."
+        resp.message("{}".format(toSend))
+        toSend=json.dumps(dic)
+    js_save2(dic)
+    print("saved")
+    print(dic)
+    print("--")
+    resp.message("{}".format(toSend))
+    return str(resp)
+
+@app.route("/messenger", methods=['POST'])
+def wazza2():
+    msg = request.form.get('Body')
+    resp = MessagingResponse()
+    parametros={"mensaje":msg}
+    dic=js_read2()
+    if("siguiente" not in dic):
+        dic["siguiente"]="saludo"
+    siguiente=dic["siguiente"]
+    print("dicc")
+    print(dic)
+    print("---")
+
+    if(siguiente=="saludo"):
+        toSend="Hola! ¿En que te puedo ayudar?"
+        dic["siguiente"]="conseguir_datos"
+    elif(siguiente=="conseguir_datos"):
+        toSend="¿Cual es el nombre de tu empresa?"
+        resp.message("{}".format(toSend))
+        toSend="Claro, solo tienes que contestar unas preguntas"
         dic["siguiente"]="nombreEmpresa"
     elif(siguiente=="nombreEmpresa"):
         dic["empresa"]=msg
@@ -347,7 +402,7 @@ def messenger_reply2():
     time.sleep(2)
     return str(resp)
 
-@app.route("/messenger", methods=['POST'])
+@app.route("/messenger2", methods=['POST'])
 def messenger_reply():
     msg = request.form.get('Body')
     resp = MessagingResponse()

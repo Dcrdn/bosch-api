@@ -93,6 +93,7 @@ def wazza():
     print("saved")
     print(dic)
     print("--")
+    resp.message("{}".format(toSend))
     return str(resp)
 
 @app.route("/sms2", methods=['POST'])

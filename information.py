@@ -168,8 +168,16 @@ def js_read():
    with open('temp.json') as f_in:
        return(json.load(f_in))
 
+def js_read2():
+   with open('temp2.json') as f_in:
+       return(json.load(f_in))
+
 def js_save(dictionary):
     with open('temp.json', 'w') as fp:
+        json.dump(dictionary, fp)
+
+def js_save2(dictionary):
+    with open('temp2.json', 'w') as fp:
         json.dump(dictionary, fp)
 
 #sonata
